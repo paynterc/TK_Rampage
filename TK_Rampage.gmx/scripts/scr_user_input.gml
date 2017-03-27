@@ -34,7 +34,19 @@ switch(argument0){
         break;
     case INPUT_TK_DOWN:
         return keyboard_check(vk_down) || gamepad_axis_value(global.pad, gp_axislv) > 0;
-        break; 
+        break;
+    case INPUT_MENU_BACK:
+        return keyboard_check_pressed(vk_escape);
+        break;
+    case INPUT_MENU_OPTION_NEXT:
+        return keyboard_check_pressed(vk_down);
+        break;
+    case INPUT_MENU_OPTION_PREV:
+        return keyboard_check_pressed(vk_up);
+        break;
+    case INPUT_MENU_OPTION_SELECT:
+        return keyboard_check_pressed(vk_enter);
+        break;               
     case "point_dir":
         var pdir = noone;
         if( gamepad_is_connected(global.pad) ){

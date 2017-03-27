@@ -85,11 +85,12 @@ alarm[2] = room_speed * spawn_rate_truck;
           <argument>
             <kind>1</kind>
             <string>/// Spawn wave
-
-var wave = instance_create(0,0,obj_wave_spawner);
-wave.e_count = e_count;// Number of enemies
-with(wave){
-    event_user(0);// Trigger wave
+if(instance_count&lt;300){
+    var wave = instance_create(0,0,obj_wave_spawner);
+    wave.e_count = e_count;// Number of enemies
+    with(wave){
+        event_user(0);// Trigger wave
+    }
 }
 alarm[1] = room_speed * spawn_rate_wave;
 </string>

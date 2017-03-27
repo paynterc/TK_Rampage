@@ -14,10 +14,14 @@
     <sprite>sprites\spr_enemy1</sprite>
     <sprite>sprites\spr_truck</sprite>
     <sprite>sprites\spr_truck1</sprite>
+    <sprite>sprites\spr_truck_exploded</sprite>
     <sprite>sprites\spr_truck2</sprite>
     <sprite>sprites\spr_bullet</sprite>
+    <sprite>sprites\spr_bullet_explode</sprite>
     <sprite>sprites\spr_explode</sprite>
     <sprite>sprites\spr_grabber</sprite>
+    <sprite>sprites\spr_button</sprite>
+    <sprite>sprites\spr_headlight</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_street1</background>
@@ -25,10 +29,28 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="_service">
+      <script>scripts\scr_script_parse.gml</script>
       <script>scripts\scr_user_input.gml</script>
       <script>scripts\scr_screen_shake.gml</script>
     </scripts>
+    <scripts name="_menu">
+      <script>scripts\scr_play.gml</script>
+      <script>scripts\scr_quit.gml</script>
+    </scripts>
+    <scripts name="_arrays">
+      <script>scripts\scr_str_split.gml</script>
+      <script>scripts\scr_array_random.gml</script>
+      <script>scripts\scr_push_array_1d.gml</script>
+      <script>scripts\scr_array_concat.gml</script>
+      <script>scripts\scr_update_array_1d.gml</script>
+      <script>scripts\scr_fill_array.gml</script>
+      <script>scripts\scr_array_remove.gml</script>
+      <script>scripts\scr_get_array_1d.gml</script>
+    </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_menus</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_game_control</object>
     <object>objects\obj_player</object>
@@ -44,11 +66,21 @@
     </objects>
     <object>objects\obj_efct_screenshake</object>
     <object>objects\obj_bullet</object>
+    <object>objects\obj_button_basic</object>
+    <objects name="_ui">
+      <object>objects\obj_menu</object>
+      <object>objects\obj_menu_retry</object>
+      <object>objects\obj_text_basic</object>
+      <object>objects\obj_score</object>
+      <object>objects\obj_text_menu_header</object>
+    </objects>
+    <object>objects\obj_headlight</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_menu</room>
     <room>rooms\rm_1</room>
   </rooms>
-  <constants number="17">
+  <constants number="21">
     <constant name="INPUT_GRAB">1</constant>
     <constant name="INPUT_THROW">2</constant>
     <constant name="INPUT_MV_LEFT">3</constant>
@@ -59,6 +91,10 @@
     <constant name="INPUT_TK_LEFT">8</constant>
     <constant name="INPUT_TK_RIGHT">9</constant>
     <constant name="INPUT_TK_DOWN">10</constant>
+    <constant name="INPUT_MENU_BACK">11</constant>
+    <constant name="INPUT_MENU_OPTION_NEXT">12</constant>
+    <constant name="INPUT_MENU_OPTION_PREV">13</constant>
+    <constant name="INPUT_MENU_OPTION_SELECT">14</constant>
     <constant name="STATE_GR_MOVING">0</constant>
     <constant name="STATE_GR_THROWING">1</constant>
     <constant name="STATE_GR_MIDTHROW">2</constant>

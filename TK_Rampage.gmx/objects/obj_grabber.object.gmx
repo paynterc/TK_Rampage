@@ -34,6 +34,7 @@ throwspeed = .05;// Pause between throws
 state = STATE_GR_MOVING;
 queue = ds_queue_create();
 can_throw=1;
+max_grabbed = 10;// Max number of grabbed items
 
 
 </string>
@@ -168,7 +169,7 @@ if(state==STATE_GR_MOVING){
             <kind>1</kind>
             <string>/// Grab it
 if(state!=STATE_GR_THROWING &amp;&amp; other.state == STATE_GB_STATIC){
-    if( ds_queue_size(queue) &lt; 20 ){
+    if( ds_queue_size(queue) &lt; max_grabbed ){
         other.state = STATE_GB_GRABBED;
         ds_queue_enqueue(queue, other.id);
     }
