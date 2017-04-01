@@ -28,7 +28,7 @@
             <string>/// Init
 selected = noone;
 buttons = noone;
-
+depth=-100000;
 buttons[0,0]="PLAY";
 buttons[0,1]="scr_play";
 

@@ -42,7 +42,11 @@ global.bound_pl=global.bound_l+64;// Player left boundry
 global.view_x = view_xview[0];
 global.view_y = view_yview[0];
 
+
 global.gamescore = 0;
+global.gamewave = 1;
+
+global.blood = 0;
 </string>
           </argument>
         </arguments>

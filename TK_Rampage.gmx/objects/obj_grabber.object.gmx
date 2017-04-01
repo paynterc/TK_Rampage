@@ -34,7 +34,8 @@ throwspeed = .05;// Pause between throws
 state = STATE_GR_MOVING;
 queue = ds_queue_create();
 can_throw=1;
-max_grabbed = 10;// Max number of grabbed items
+max_grabbed = 16;// Max number of grabbed items
+image_speed=.25;
 
 
 </string>
@@ -122,6 +123,8 @@ if(state==STATE_GR_MOVING){
     
     if( distance_to_point(mouse_x,mouse_y) &gt; movespeed ){
         move_towards_point(mouse_x,mouse_y,movespeed);
+    }else{
+        speed = movespeed/2;
     }
 
     
@@ -135,10 +138,12 @@ if(state==STATE_GR_MOVING){
         {
             var throwme;
             throwme = ds_queue_dequeue(queue);
-            throwme.state = STATE_GB_THROWN;
-            throwme.direction = dir;
-            throwme.image_angle = dir;
-            throwme.speed = 20;
+            if(instance_exists(throwme)){
+                throwme.state = STATE_GB_THROWN;
+                throwme.direction = dir;
+                throwme.image_angle = dir;
+                throwme.speed = 20;
+            }
         }
         alarm[0] = room_speed * throwspeed;
     }

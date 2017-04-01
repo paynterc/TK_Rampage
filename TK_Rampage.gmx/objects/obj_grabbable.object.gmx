@@ -27,15 +27,16 @@
             <kind>1</kind>
             <string>/// Init
 movespeed=0;
-state = STATE_GB_STATIC;
+state = STATE_GB_INIT;
 hp = 1;
 bbr=noone;
 bbl=noone;
 bbt=noone;
 bbb=noone;
 vspd = background_vspeed[0];
-explode_sprite = spr_explode;
+explode_sprite = spr_splatter1;
 scored=0;
+image_speed=.5;
 </string>
           </argument>
         </arguments>
@@ -108,8 +109,6 @@ bbb = y + (sprite_height/2);
           <argument>
             <kind>1</kind>
             <string>/// Move
-depth = -y;
-
 if(state==STATE_GB_GRABBED){
 
     if(instance_exists(obj_grabber)){
@@ -120,7 +119,8 @@ if(state==STATE_GB_GRABBED){
     // Flying through air now
  
 }else{
-    y += vspd; 
+    y += vspd;
+    depth = -y;
 }
 </string>
           </argument>
@@ -143,8 +143,11 @@ if(state==STATE_GB_GRABBED){
           <argument>
             <kind>1</kind>
             <string>/// Check if offscreen
-
-if(state!=STATE_GB_GRABBED){
+if(state==STATE_GB_INIT){
+    if(bbb&gt;global.bound_t){
+        state = STATE_GB_STATIC;
+    }
+}else if(state!=STATE_GB_GRABBED){
 
     if( 
     bbb&lt;global.bound_t ||

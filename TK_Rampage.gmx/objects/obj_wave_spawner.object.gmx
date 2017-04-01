@@ -75,7 +75,6 @@ var enemy2 = instance_create(global.bound_r - xs,0,ob);
 
 enemy1.waypoints = waypoints_1;
 enemy2.waypoints = waypoints_2;
-enemy2.image_blend = c_black;
 
 e_count--;
 

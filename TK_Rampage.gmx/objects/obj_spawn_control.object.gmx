@@ -29,12 +29,57 @@
 spawn_rate_object = 2;
 spawn_rate_truck = 5;
 spawn_rate_wave = 15;
+spawn_rate_building = 10;
 e_count = 10;// Enemies per wave (*2)
 rc = room_width/2; // Room center
 
 alarm[0] = room_speed * spawn_rate_object;
 alarm[1] = room_speed * spawn_rate_wave;
 alarm[2] = room_speed * spawn_rate_truck;
+alarm[3] = room_speed * spawn_rate_building;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Spawn building
+//tile_add(bg_buildings, 0, 0, 112, 112, 0, 0, -9999);
+var b1 = instance_create(0,-10000,obj_building);
+var b2 = instance_create(room_width,-10000,obj_building);
+
+b1.sprite_index=choose(spr_building1,spr_building2,spr_building3,spr_building4,spr_building5,spr_building6);
+b2.sprite_index=choose(spr_building1,spr_building2,spr_building3,spr_building4,spr_building5,spr_building6);
+
+//b2.image_xscale = -1;
+
+b1.y = b1.sprite_height * -1;
+if(b1.sprite_index==spr_building6){
+    instance_create(global.bound_l, b1.y + 100, obj_donut );
+}
+
+b2.y = b2.sprite_height * -1;
+if(b2.sprite_index==spr_building6){
+    instance_create(global.bound_r, b2.y + 100, obj_donut );
+}
+
+alarm[3]=room_speed*spawn_rate_building;
 </string>
           </argument>
         </arguments>
@@ -58,9 +103,15 @@ alarm[2] = room_speed * spawn_rate_truck;
           <argument>
             <kind>1</kind>
             <string>/// Spawn vehicle
-var ob_w = 74;
-var xpoint = irandom_range( global.bound_l + (ob_w/2), global.bound_r - (ob_w/2 ) );
-instance_create(xpoint,0,obj_vehicle);
+
+var xpoint = irandom_range( global.bound_l, global.bound_r );
+var thing = instance_create(xpoint,0,obj_vehicle);
+
+if(thing.x-(thing.sprite_width/2) &lt;global.bound_l){
+    thing.x = global.bound_l + (thing.sprite_width/2);
+}else if(thing.x+(thing.sprite_width/2) &gt; global.bound_r){
+    thing.x = global.bound_r - (thing.sprite_width/2);
+}
 alarm[2] = room_speed * spawn_rate_truck;
 </string>
           </argument>
@@ -87,10 +138,13 @@ alarm[2] = room_speed * spawn_rate_truck;
             <string>/// Spawn wave
 if(instance_count&lt;300){
     var wave = instance_create(0,0,obj_wave_spawner);
-    wave.e_count = e_count;// Number of enemies
+    wave.e_count = e_count + round(global.gamewave * .25);// Number of enemies
+    wave.ob = choose(obj_en_disco,obj_en_ninja,obj_en_pirate,obj_en_alien);
     with(wave){
         event_user(0);// Trigger wave
     }
+    global.gamewave ++;
+
 }
 alarm[1] = room_speed * spawn_rate_wave;
 </string>
@@ -118,7 +172,7 @@ alarm[1] = room_speed * spawn_rate_wave;
             <string>/// Spawn thing
 var rx = irandom_range(global.bound_l, global.bound_r);
 
-var thing = instance_create(rx,0,obj_grabbable);
+var thing = instance_create(rx,0,obj_trashcan);
 if(thing.x-(thing.sprite_width/2) &lt;global.bound_l){
     thing.x = global.bound_l + (thing.sprite_width/2);
 }else if(thing.x+(thing.sprite_width/2) &gt; global.bound_r){
