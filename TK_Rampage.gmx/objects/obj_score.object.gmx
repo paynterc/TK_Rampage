@@ -31,10 +31,10 @@ draw_set_color(clr);
 draw_set_halign(fa_center);
 yy=y;
 for(var i=0; i&lt;array_length_1d(text); i++){
-  draw_text(room_width/2, yy, global.gamescore);
+  draw_text(room_width/4, yy, global.gamescore);
   yy += fnt_height + spacing;
   if(debug_mode){
-    draw_text(room_width/2, yy, instance_count);
+    draw_text(room_width/4, yy, instance_count);
   } 
 }
 </string>

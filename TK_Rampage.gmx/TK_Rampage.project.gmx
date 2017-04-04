@@ -29,6 +29,12 @@
     <sprite>sprites\spr_solid</sprite>
     <sprite>sprites\spr_splatter1</sprite>
     <sprite>sprites\spr_trashcan3</sprite>
+    <sprite>sprites\spr_tree1</sprite>
+    <sprite>sprites\spr_tree3</sprite>
+    <sprite>sprites\spr_meter</sprite>
+    <sprite>sprites\spr_meter_exploded</sprite>
+    <sprite>sprites\spr_tree2</sprite>
+    <sprite>sprites\spr_bike</sprite>
     <sprite>sprites\spr_trashcan_exploded</sprite>
     <sprite>sprites\spr_trashcan2</sprite>
     <sprite>sprites\spr_truck</sprite>
@@ -45,6 +51,7 @@
     </sprites>
     <sprite>sprites\spr_shadow</sprite>
     <sprite>sprites\spr_donut</sprite>
+    <sprite>sprites\spr_tire</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_street1</background>
@@ -98,8 +105,12 @@
       <object>objects\obj_solid</object>
       <object>objects\obj_grabbable</object>
       <object>objects\obj_donut</object>
+      <object>objects\obj_tire</object>
       <object>objects\obj_en</object>
       <object>objects\obj_trashcan</object>
+      <object>objects\obj_meter</object>
+      <object>objects\obj_tree</object>
+      <object>objects\obj_bike</object>
       <object>objects\obj_vehicle</object>
       <objects name="_waveshooters">
         <object>objects\obj_en_waveshooter</object>

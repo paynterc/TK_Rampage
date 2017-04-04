@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
-spawn_rate_object = 2;
+spawn_rate_object = 5;
 spawn_rate_truck = 5;
 spawn_rate_wave = 15;
 spawn_rate_building = 10;
@@ -71,14 +71,20 @@ b2.sprite_index=choose(spr_building1,spr_building2,spr_building3,spr_building4,s
 
 b1.y = b1.sprite_height * -1;
 if(b1.sprite_index==spr_building6){
-    instance_create(global.bound_l, b1.y + 100, obj_donut );
+    instance_create(global.bound_l-32, b1.y + 100, obj_donut );
+}
+if(b1.sprite_index==spr_building2){
+    instance_create(global.bound_l-22, b1.y + 132, obj_tire );
 }
 
 b2.y = b2.sprite_height * -1;
 if(b2.sprite_index==spr_building6){
-    instance_create(global.bound_r, b2.y + 100, obj_donut );
+    instance_create(global.bound_r+32, b2.y + 100, obj_donut );
 }
-
+if(b2.sprite_index==spr_building2){
+    instance_create(global.bound_r+22, b2.y + 132, obj_tire );
+}
+var test = 1;
 alarm[3]=room_speed*spawn_rate_building;
 </string>
           </argument>
@@ -169,10 +175,16 @@ alarm[1] = room_speed * spawn_rate_wave;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Spawn thing
-var rx = irandom_range(global.bound_l, global.bound_r);
+            <string>/// Spawn sidewalk object
 
-var thing = instance_create(rx,0,obj_trashcan);
+var ob = choose(obj_trashcan,obj_tree,obj_bike,obj_meter);
+
+var lx = irandom_range(global.bound_r - global.sidewalk_width, global.bound_r);
+var rx = irandom_range(global.bound_l, global.bound_l + global.sidewalk_width);
+
+var cx = choose(lx,rx);
+
+var thing = instance_create(cx,0,ob);
 if(thing.x-(thing.sprite_width/2) &lt;global.bound_l){
     thing.x = global.bound_l + (thing.sprite_width/2);
 }else if(thing.x+(thing.sprite_width/2) &gt; global.bound_r){

@@ -34,6 +34,7 @@ global.bound_r=room_width - (room_width/8);
 global.bound_l=room_width/8;
 global.bound_t=0;
 global.bound_b=room_height;
+global.sidewalk_width = 68;
 
 global.bound_pr=global.bound_r-64;// Player right boundry
 global.bound_pl=global.bound_l+64;// Player left boundry
