@@ -37,7 +37,7 @@ can_throw=1;
 max_grabbed = 16;// Max number of grabbed items
 image_speed=.25;
 
-
+at_capacity = false;
 </string>
           </argument>
         </arguments>
@@ -110,26 +110,46 @@ can_throw = 1;
             <kind>1</kind>
             <string>/// Get player's input
 
-if(scr_user_input(INPUT_THROW)){
-
+if(scr_user_input(INPUT_THROW) &amp;&amp; scr_user_input(INPUT_GRAB)){
+    
     state=STATE_GR_THROWING;
 
+}else if(scr_user_input(INPUT_GRAB)){
+    state = STATE_GR_GRABBING;
+    can_throw = 1;
+    
 }else{
     state=STATE_GR_MOVING;
-    can_throw = 1;
 }
 
-if(state==STATE_GR_MOVING){
+if(state==STATE_GR_GRABBING){
     
+
+    sprite_index = spr_grabber;
     if( distance_to_point(mouse_x,mouse_y) &gt; movespeed ){
         move_towards_point(mouse_x,mouse_y,movespeed);
     }else{
         speed = movespeed/2;
     }
 
+}else if(state==STATE_GR_MOVING){
+    
+    sprite_index = spr_headlight;
+    x = mouse_x;
+    y = mouse_y;
+    
+    if !ds_queue_empty(queue)
+    {
+        release_me = ds_queue_dequeue(queue);
+        if(instance_exists(release_me)){
+            release_me.state = STATE_GB_STATIC;
+            release_me.speed = 0;
+        }
+    }
+
     
 }else if(state == STATE_GR_THROWING){
-    
+    sprite_index = spr_grabber;
     speed=0;
     if(can_throw){
         can_throw = 0;
@@ -146,10 +166,31 @@ if(state==STATE_GR_MOVING){
             }
         }
         alarm[0] = room_speed * throwspeed;
-    }
-    
+    }    
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check grab capacity
+at_capacity = ds_queue_size(queue) &gt;= max_grabbed;
 </string>
           </argument>
         </arguments>
@@ -173,7 +214,7 @@ if(state==STATE_GR_MOVING){
           <argument>
             <kind>1</kind>
             <string>/// Grab it
-if(state!=STATE_GR_THROWING &amp;&amp; other.state == STATE_GB_STATIC){
+if(state==STATE_GR_GRABBING &amp;&amp; other.state == STATE_GB_STATIC){
     if( ds_queue_size(queue) &lt; max_grabbed ){
         other.state = STATE_GB_GRABBED;
         ds_queue_enqueue(queue, other.id);
@@ -203,6 +244,34 @@ if(state!=STATE_GR_THROWING &amp;&amp; other.state == STATE_GB_STATIC){
             <kind>1</kind>
             <string>/// Cleanup
 ds_queue_destroy(queue);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+if(state == STATE_GR_GRABBING){
+    scr_draw_lightning(obj_headlight.x,obj_headlight.y,x,y,4,8,8,8);
+}else if(state == STATE_GR_THROWING){
+    scr_draw_lightning(x,y,mouse_x,mouse_y,4,8,8,8);
+}
 </string>
           </argument>
         </arguments>

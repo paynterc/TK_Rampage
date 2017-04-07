@@ -113,10 +113,10 @@ alarm[3]=room_speed*spawn_rate_building;
 var xpoint = irandom_range( global.bound_l, global.bound_r );
 var thing = instance_create(xpoint,0,obj_vehicle);
 
-if(thing.x-(thing.sprite_width/2) &lt;global.bound_l){
-    thing.x = global.bound_l + (thing.sprite_width/2);
-}else if(thing.x+(thing.sprite_width/2) &gt; global.bound_r){
-    thing.x = global.bound_r - (thing.sprite_width/2);
+if(thing.x-(thing.sprite_width/2) &lt; global.bound_l + global.sidewalk_width){
+    thing.x = global.bound_l + (thing.sprite_width/2)  + global.sidewalk_width;
+}else if(thing.x+(thing.sprite_width/2) &gt; global.bound_r - global.sidewalk_width){
+    thing.x = global.bound_r - (thing.sprite_width/2) - global.sidewalk_width;
 }
 alarm[2] = room_speed * spawn_rate_truck;
 </string>

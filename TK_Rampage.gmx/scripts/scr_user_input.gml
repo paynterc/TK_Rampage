@@ -9,7 +9,7 @@ switch(argument0){
         return keyboard_check(vk_space) || mouse_check_button(mb_left) || gamepad_button_value(global.pad, gp_shoulderrb);
         break;
     case INPUT_THROW:
-        return mouse_check_button(mb_left) || gamepad_button_check(global.pad, gp_shoulderr);
+        return  mouse_check_button(mb_right);
         break;
     case INPUT_MV_UP:
         return keyboard_check(ord("W")) || gamepad_axis_value(global.pad, gp_axislv) < 0;

@@ -25,6 +25,7 @@
     <sprite>sprites\spr_olivia</sprite>
     <sprite>sprites\spr_alien</sprite>
     <sprite>sprites\spr_gus</sprite>
+    <sprite>sprites\spr_pirate</sprite>
     <sprite>sprites\spr_cop</sprite>
     <sprite>sprites\spr_solid</sprite>
     <sprite>sprites\spr_splatter1</sprite>
@@ -39,6 +40,13 @@
     <sprite>sprites\spr_trashcan2</sprite>
     <sprite>sprites\spr_truck</sprite>
     <sprite>sprites\spr_truck1</sprite>
+    <sprite>sprites\spr_truck3</sprite>
+    <sprite>sprites\spr_truck4</sprite>
+    <sprite>sprites\spr_truck5</sprite>
+    <sprite>sprites\spr_car1</sprite>
+    <sprite>sprites\spr_car2</sprite>
+    <sprite>sprites\spr_smoke1</sprite>
+    <sprite>sprites\spr_smoke2</sprite>
     <sprite>sprites\spr_truck1_exploded</sprite>
     <sprite>sprites\spr_truck2</sprite>
     <sprites name="_buildings">
@@ -52,6 +60,7 @@
     <sprite>sprites\spr_shadow</sprite>
     <sprite>sprites\spr_donut</sprite>
     <sprite>sprites\spr_tire</sprite>
+    <sprite>sprites\spr_hospital</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_street1</background>
@@ -79,7 +88,11 @@
       <script>scripts\scr_array_remove.gml</script>
       <script>scripts\scr_get_array_1d.gml</script>
     </scripts>
+    <script>scripts\scr_draw_lightning.gml</script>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shader0.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_menus</font>
   </fonts>
@@ -100,7 +113,6 @@
       <object>objects\obj_text_menu_header</object>
       <object>objects\obj_button_basic</object>
     </objects>
-    <object>objects\obj_headlight</object>
     <objects name="_grabbables">
       <object>objects\obj_solid</object>
       <object>objects\obj_grabbable</object>
@@ -128,12 +140,17 @@
       </objects>
     </objects>
     <object>objects\obj_building</object>
+    <objects name="_effects">
+      <object>objects\obj_headlight</object>
+      <object>objects\obj_smoke</object>
+    </objects>
+    <object>objects\obj_wizlabs</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
     <room>rooms\rm_1</room>
   </rooms>
-  <constants number="22">
+  <constants number="23">
     <constant name="INPUT_GRAB">1</constant>
     <constant name="INPUT_THROW">2</constant>
     <constant name="INPUT_MV_LEFT">3</constant>
@@ -149,8 +166,9 @@
     <constant name="INPUT_MENU_OPTION_PREV">13</constant>
     <constant name="INPUT_MENU_OPTION_SELECT">14</constant>
     <constant name="STATE_GR_MOVING">0</constant>
-    <constant name="STATE_GR_THROWING">1</constant>
-    <constant name="STATE_GR_MIDTHROW">2</constant>
+    <constant name="STATE_GR_GRABBING">1</constant>
+    <constant name="STATE_GR_THROWING">2</constant>
+    <constant name="STATE_GR_MIDTHROW">3</constant>
     <constant name="STATE_GB_INIT">0</constant>
     <constant name="STATE_GB_STATIC">1</constant>
     <constant name="STATE_GB_GRABBED">2</constant>
