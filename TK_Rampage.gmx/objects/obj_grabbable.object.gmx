@@ -5,10 +5,10 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_solid</parentName>
+  <parentName>obj_smashable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="4" ename="obj_smashable">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,204 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Init
-movespeed=0;
-state = STATE_GB_INIT;
-hp = 1;
-bbr=noone;
-bbl=noone;
-bbt=noone;
-bbb=noone;
-vspd = background_vspeed[0];
-explode_sprite = spr_splatter1;
-scored=0;
-image_speed=.5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Exploded and destroy
-instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Set bounding box
-bbr = x + (sprite_width/2);
-bbl = x - (sprite_width/2);
-bbt = y - (sprite_height/2);
-bbb = y + (sprite_height/2);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Move
-if(state==STATE_GB_GRABBED){
-
-    if(instance_exists(obj_grabber)){
-        move_towards_point(obj_grabber.x,obj_grabber.y,obj_grabber.movespeed);
-    }
-    
-}else if(state == STATE_GB_THROWN){
-    // Flying through air now
- 
-}else{
-    y += vspd;
-    depth = -y;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Check if offscreen
-if(state==STATE_GB_INIT){
-    if(bbb&gt;global.bound_t){
-        state = STATE_GB_STATIC;
-    }
-}else if(state!=STATE_GB_GRABBED){
-
-    if( 
-    bbb&lt;global.bound_t ||
-    bbr&lt;global.bound_l ||
-    bbl&gt;global.bound_r
-    ){
-        hp=0;
-    }
-    
-    if( 
-    bbt&gt;global.bound_b
-    ){
-        instance_destroy();
-    }
-    
-    
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Check HP
-if(hp&lt;1){
-    state=STATE_GB_EXPLODING;
-    sprite_index = explode_sprite;
-    speed = 0;
-    movespeed = 0;
-    vspd = background_vspeed[0];
-    depth=1000;
-    if(!scored){
-        scored=1;
-        global.gamescore++;
-    }
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_grabbable">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Impact other grabbable
+            <string>/// Impact other smashable
 if(state==STATE_GB_GRABBED &amp;&amp; other.state==STATE_GB_GRABBED){
     if(x == other.x &amp;&amp; y == other.y){
             
@@ -244,36 +47,11 @@ if(state==STATE_GB_GRABBED &amp;&amp; other.state==STATE_GB_GRABBED){
         &amp;&amp; other.state != STATE_GB_EXPLODING){
         //state = STATE_GB_STATIC;
         hp--;
-        other.hp--;    
+        other.hp--;  
+        other.flash=1;
+        flash=1;  
     }
     
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Stop exploding
-if(state==STATE_GB_EXPLODING){
-    image_speed = 0;
-    image_index = image_number - 1;
 }
 </string>
           </argument>

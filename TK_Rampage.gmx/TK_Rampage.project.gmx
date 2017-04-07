@@ -22,6 +22,7 @@
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_soldier</sprite>
     <sprite>sprites\spr_ninja</sprite>
+    <sprite>sprites\spr_agent</sprite>
     <sprite>sprites\spr_olivia</sprite>
     <sprite>sprites\spr_alien</sprite>
     <sprite>sprites\spr_gus</sprite>
@@ -29,6 +30,7 @@
     <sprite>sprites\spr_cop</sprite>
     <sprite>sprites\spr_solid</sprite>
     <sprite>sprites\spr_splatter1</sprite>
+    <sprite>sprites\spr_splatter2</sprite>
     <sprite>sprites\spr_trashcan3</sprite>
     <sprite>sprites\spr_tree1</sprite>
     <sprite>sprites\spr_tree3</sprite>
@@ -61,6 +63,7 @@
     <sprite>sprites\spr_donut</sprite>
     <sprite>sprites\spr_tire</sprite>
     <sprite>sprites\spr_hospital</sprite>
+    <sprite>sprites\spr_rifle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_street1</background>
@@ -73,6 +76,7 @@
       <script>scripts\scr_script_parse.gml</script>
       <script>scripts\scr_user_input.gml</script>
       <script>scripts\scr_screen_shake.gml</script>
+      <script>scripts\scr_gradually_rotate.gml</script>
     </scripts>
     <scripts name="_menu">
       <script>scripts\scr_play.gml</script>
@@ -99,6 +103,7 @@
   <objects name="objects">
     <object>objects\obj_game_control</object>
     <object>objects\obj_player</object>
+    <object>objects\obj_player_splat</object>
     <object>objects\obj_grabber</object>
     <objects name="_spawning">
       <object>objects\obj_spawn_control</object>
@@ -115,10 +120,15 @@
     </objects>
     <objects name="_grabbables">
       <object>objects\obj_solid</object>
+      <object>objects\obj_smashable</object>
       <object>objects\obj_grabbable</object>
+      <object>objects\obj_en</object>
+      <object>objects\obj_grabbable_BACKUP</object>
+      <object>objects\obj_hunter</object>
+      <object>objects\obj_agent</object>
+      <object>objects\obj_rifle</object>
       <object>objects\obj_donut</object>
       <object>objects\obj_tire</object>
-      <object>objects\obj_en</object>
       <object>objects\obj_trashcan</object>
       <object>objects\obj_meter</object>
       <object>objects\obj_tree</object>
@@ -150,7 +160,7 @@
     <room>rooms\rm_menu</room>
     <room>rooms\rm_1</room>
   </rooms>
-  <constants number="23">
+  <constants number="24">
     <constant name="INPUT_GRAB">1</constant>
     <constant name="INPUT_THROW">2</constant>
     <constant name="INPUT_MV_LEFT">3</constant>
@@ -174,6 +184,7 @@
     <constant name="STATE_GB_GRABBED">2</constant>
     <constant name="STATE_GB_THROWN">3</constant>
     <constant name="STATE_GB_EXPLODING">4</constant>
+    <constant name="STATE_GB_AIMING">5</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

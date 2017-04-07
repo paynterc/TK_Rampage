@@ -32,6 +32,7 @@ vsp = 0;
 movespeed = 4;
 image_speed=.25;
 headlight = instance_create(x,y,obj_headlight);
+hp=1;
 </string>
           </argument>
         </arguments>
@@ -162,6 +163,42 @@ headlight.depth = depth-10;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check hp
+/// Die
+if(hp&lt;1){
+    if(instance_exists(obj_menu_retry)){
+        obj_menu_retry.show = 1;
+    }
+    
+    if(instance_exists(obj_grabber)){
+        with(obj_grabber){
+            instance_destroy();
+        }
+    }
+    instance_create(x,y,obj_player_splat);
+    scr_screen_shake();
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="4" ename="obj_en">
       <action>
@@ -180,21 +217,12 @@ headlight.depth = depth-10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Die
+            <string>/// Damage
 if(other.state!=STATE_GB_STATIC){
     exit;
 }
 
-if(instance_exists(obj_menu_retry)){
-    obj_menu_retry.show = 1;
-}
-
-if(instance_exists(obj_grabber)){
-    with(obj_grabber){
-        instance_destroy();
-    }
-}
-instance_destroy();
+hp--;
 </string>
           </argument>
         </arguments>

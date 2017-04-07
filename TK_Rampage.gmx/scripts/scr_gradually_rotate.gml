@@ -11,50 +11,14 @@
 // <turnSpeed> takes a number
 // <accuracy> takes a number between 0 and 1
 
-var objToTurn = argument0;
-var targetObject = argument1;
-var turnSpeed = argument2;//1-10
-var accuracy = clamp(argument3, 0.05, 0.95);// Don't want perfect accuracy or perfect inaccurac
+var ob = argument0;
+var tg = argument1;
+var rspd = argument2;//1-10
+var accy = clamp(argument3,.05,10);// Don't want perfect accuracy or perfect inaccuracy
 
-if(!instance_exists(objToTurn)){
-    return -1;
-}
+var pd = point_direction(ob.x,ob.y,tg.x,tg.y);
+var dd = angle_difference(pd, ob.image_angle);
+ob.image_angle += sin(degtorad(dd)) * rspd;
 
-if(!instance_exists(targetObject)){
-    return -1;
-}
-
-// Reverse nomalize accuracy for calculations
-accuracy = abs(accuracy - 1.0);
-turnSpeed = turnSpeed / 100000;
-
-// Get the target direction and facing direction
-var targetDir = point_direction(x, y, targetObject.x, targetObject.y);
-var facingDir = objToTurn.image_angle;
-
-// Calculate the difference between target direction and facing direction
-facingMinusTarget = facingDir - targetDir;
-angleDiff = facingMinusTarget;
-if(abs(facingMinusTarget) > 180)
-{
-    if(facingDir > targetDir)
-    {
-        angleDiff = -1 * ((360 - facingDir) + targetDir);
-    }
-    else
-    {
-        angleDiff = (360 - targetDir) + facingDir;
-    }
-}
-
-// Gradually rotate object
-var leastAccurateAim = 30;
-if(angleDiff > leastAccurateAim * accuracy)
-{
-    objToTurn.image_angle -= turnSpeed * delta_time;
-}
-else if(angleDiff < leastAccurateAim * accuracy)
-{
-    objToTurn.image_angle += turnSpeed * delta_time;
-}
+return dd;
 
