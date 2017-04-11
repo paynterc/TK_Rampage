@@ -28,13 +28,17 @@
             <string>/// Init
 selected = noone;
 buttons = noone;
+show=1;
 depth=-100000;
 buttons[0,0]="PLAY";
 buttons[0,1]="scr_play";
 
+buttons[1,0]="OPTIONS";
+buttons[1,1]="scr_nav,rm_menu_options";
 
-buttons[1,0]="QUIT";
-buttons[1,1]="scr_quit";
+buttons[2,0]="QUIT";
+buttons[2,1]="scr_quit";
+
 
 
 fnt = fnt_menus;
@@ -108,16 +112,18 @@ if(scr_user_input(INPUT_MENU_OPTION_SELECT)){
           <argument>
             <kind>1</kind>
             <string>/// Draw buttons
-yy = y;
-draw_set_halign(fa_center);
-for(var i = 0; i &lt; array_height_2d(buttons); i++){
-    if(i==selected){
-        draw_set_color(c_white);
-    }else{
-        draw_set_color(c_black);
+if(show){
+    yy = y;
+    draw_set_halign(fa_center);
+    for(var i = 0; i &lt; array_height_2d(buttons); i++){
+        if(i==selected){
+            draw_set_color(c_white);
+        }else{
+            draw_set_color(c_black);
+        }
+        draw_text( room_width/2, yy, string(buttons[i,0]) );
+        yy += fnt_height + spacing;    
     }
-    draw_text( room_width/2, yy, string(buttons[i,0]) );
-    yy += fnt_height + spacing;    
 }
 </string>
           </argument>

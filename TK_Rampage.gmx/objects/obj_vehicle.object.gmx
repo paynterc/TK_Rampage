@@ -90,6 +90,7 @@ smoke_created = 0;
         smoke_created = 1;
         var smk = instance_create(x,y,obj_smoke);
         smk.image_angle = image_angle;
+        audio_play_sound(snd_ef_explosion1,2,0);
     }
 }
 </string>

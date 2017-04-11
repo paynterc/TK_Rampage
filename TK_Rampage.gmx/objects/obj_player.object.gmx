@@ -32,7 +32,8 @@ vsp = 0;
 movespeed = 4;
 image_speed=.25;
 headlight = instance_create(x,y,obj_headlight);
-hp=1;
+hp=2;
+flash=0;
 </string>
           </argument>
         </arguments>
@@ -193,8 +194,34 @@ if(hp&lt;1){
     }
     instance_create(x,y,obj_player_splat);
     scr_screen_shake();
+    scr_sound_service("splatloud");
+    
+    audio_pause_sound(snd_ef_tkloop);
+    audio_pause_sound(snd_ef_tkloop_throw);
+    
     instance_destroy();
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Flash
 </string>
           </argument>
         </arguments>
@@ -223,6 +250,44 @@ if(other.state!=STATE_GB_STATIC){
 }
 
 hp--;
+var inst = other.object_index;
+if(inst == obj_bullet || object_is_ancestor(inst,obj_bullet)){
+    with(other){
+        instance_destroy();
+    }
+}
+flash=1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Flash when hit
+if (flash) {
+    flash = 0;
+    d3d_set_fog(true, c_white, 0, 0);
+    draw_self();
+    d3d_set_fog(false, c_white, 0, 0);
+}else{
+    draw_self();
+}
 </string>
           </argument>
         </arguments>

@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Globals
+global.tries++;
+
 global.pad = 0;
 
 // Use these to define the playable area in the room.
@@ -47,7 +49,7 @@ global.view_y = view_yview[0];
 global.gamescore = 0;
 global.gamewave = 1;
 
-global.blood = 1;
+
 </string>
           </argument>
         </arguments>

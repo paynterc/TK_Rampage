@@ -4,7 +4,17 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\tk_beat1</sound>
+    <sound>sound\tk_loop1</sound>
+    <sound>sound\snd_ef_tkloop</sound>
+    <sound>sound\snd_ef_tkloop_throw</sound>
+    <sound>sound\snd_ef_impact1</sound>
+    <sound>sound\snd_ef_impact2</sound>
+    <sound>sound\snd_ef_explosion1</sound>
+    <sound>sound\snd_ef_splat1</sound>
+    <sound>sound\snd_ef_splat2</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_bg_street2</sprite>
     <sprite>sprites\spr_bg_street3</sprite>
@@ -15,6 +25,7 @@
     <sprite>sprites\spr_bullet_explode</sprite>
     <sprite>sprites\spr_button</sprite>
     <sprite>sprites\spr_enemy1</sprite>
+    <sprite>sprites\spr_heart</sprite>
     <sprite>sprites\spr_explode</sprite>
     <sprite>sprites\spr_grabbable</sprite>
     <sprite>sprites\spr_grabber</sprite>
@@ -77,10 +88,18 @@
       <script>scripts\scr_user_input.gml</script>
       <script>scripts\scr_screen_shake.gml</script>
       <script>scripts\scr_gradually_rotate.gml</script>
+      <script>scripts\scr_option_save.gml</script>
+      <script>scripts\scr_option_read.gml</script>
+      <script>scripts\scr_sound_service.gml</script>
     </scripts>
     <scripts name="_menu">
       <script>scripts\scr_play.gml</script>
       <script>scripts\scr_quit.gml</script>
+      <script>scripts\scr_nav.gml</script>
+      <script>scripts\scr_op_blood.gml</script>
+      <script>scripts\scr_op_blood_toggle.gml</script>
+      <script>scripts\scr_op_music_toggle.gml</script>
+      <script>scripts\scr_op_fullscreen_toggle.gml</script>
     </scripts>
     <scripts name="_arrays">
       <script>scripts\scr_str_split.gml</script>
@@ -101,7 +120,9 @@
     <font>fonts\fnt_menus</font>
   </fonts>
   <objects name="objects">
+    <object>objects\obj_game_settings</object>
     <object>objects\obj_game_control</object>
+    <object>objects\obj_sound_control</object>
     <object>objects\obj_player</object>
     <object>objects\obj_player_splat</object>
     <object>objects\obj_grabber</object>
@@ -112,8 +133,11 @@
     <object>objects\obj_efct_screenshake</object>
     <objects name="_ui">
       <object>objects\obj_menu</object>
+      <object>objects\obj_menu_options</object>
+      <object>objects\obj_menu_blood</object>
       <object>objects\obj_menu_retry</object>
       <object>objects\obj_text_basic</object>
+      <object>objects\obj_instructions</object>
       <object>objects\obj_score</object>
       <object>objects\obj_text_menu_header</object>
       <object>objects\obj_button_basic</object>
@@ -122,31 +146,35 @@
       <object>objects\obj_solid</object>
       <object>objects\obj_smashable</object>
       <object>objects\obj_grabbable</object>
-      <object>objects\obj_en</object>
       <object>objects\obj_grabbable_BACKUP</object>
-      <object>objects\obj_hunter</object>
-      <object>objects\obj_agent</object>
-      <object>objects\obj_rifle</object>
       <object>objects\obj_donut</object>
       <object>objects\obj_tire</object>
       <object>objects\obj_trashcan</object>
       <object>objects\obj_meter</object>
       <object>objects\obj_tree</object>
       <object>objects\obj_bike</object>
-      <object>objects\obj_vehicle</object>
-      <objects name="_waveshooters">
-        <object>objects\obj_en_waveshooter</object>
-        <object>objects\obj_en_cop</object>
-        <object>objects\obj_en_pirate</object>
-        <object>objects\obj_en_ninja</object>
-        <object>objects\obj_en_disco</object>
-        <object>objects\obj_en_soldier</object>
-        <object>objects\obj_en_alien</object>
-      </objects>
-      <objects name="_bullets">
-        <object>objects\obj_star</object>
-        <object>objects\obj_bullet</object>
-        <object>objects\obj_bannana</object>
+      <objects name="_enemies">
+        <object>objects\obj_en</object>
+        <objects name="_waveshooters">
+          <object>objects\obj_en_waveshooter</object>
+          <object>objects\obj_en_cop</object>
+          <object>objects\obj_en_pirate</object>
+          <object>objects\obj_en_ninja</object>
+          <object>objects\obj_en_disco</object>
+          <object>objects\obj_en_soldier</object>
+          <object>objects\obj_en_alien</object>
+        </objects>
+        <objects name="_hunters">
+          <object>objects\obj_rifle</object>
+          <object>objects\obj_hunter</object>
+          <object>objects\obj_agent</object>
+        </objects>
+        <objects name="_bullets">
+          <object>objects\obj_star</object>
+          <object>objects\obj_bullet</object>
+          <object>objects\obj_bannana</object>
+        </objects>
+        <object>objects\obj_vehicle</object>
       </objects>
     </objects>
     <object>objects\obj_building</object>
@@ -158,9 +186,12 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
+    <room>rooms\rm_menu_options</room>
+    <room>rooms\rm_menu_blood</room>
     <room>rooms\rm_1</room>
   </rooms>
-  <constants number="24">
+  <constants number="25">
+    <constant name="INI_FILE">"tk_rampage.ini"</constant>
     <constant name="INPUT_GRAB">1</constant>
     <constant name="INPUT_THROW">2</constant>
     <constant name="INPUT_MV_LEFT">3</constant>

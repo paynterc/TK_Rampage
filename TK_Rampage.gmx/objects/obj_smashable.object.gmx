@@ -197,16 +197,18 @@ if(state==STATE_GB_INIT){
           <argument>
             <kind>1</kind>
             <string>/// Check HP
-if(hp&lt;1){
-    state=STATE_GB_EXPLODING;
-    sprite_index = explode_sprite;
-    speed = 0;
-    movespeed = 0;
-    vspd = background_vspeed[0];
-    depth=1000;
-    if(!scored){
-        scored=1;
-        global.gamescore++;
+if(state!=STATE_GB_EXPLODING){
+    if(hp&lt;1){
+        state=STATE_GB_EXPLODING;
+        sprite_index = explode_sprite;
+        speed = 0;
+        movespeed = 0;
+        vspd = background_vspeed[0];
+        depth=1000;
+        if(!scored){
+            scored=1;
+            global.gamescore++;
+        }
     }
 }
 

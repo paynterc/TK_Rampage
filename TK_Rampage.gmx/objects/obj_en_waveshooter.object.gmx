@@ -206,7 +206,7 @@ if(state==STATE_GB_EXPLODING &amp;&amp; blended==0){
     }else{
         image_blend = c_white;
     }
-    
+    scr_sound_service("splat");
 }
 
 </string>

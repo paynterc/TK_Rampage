@@ -30,6 +30,7 @@ text=noone;
 text[0]="xxx";
 fnt = fnt_menus;
 clr = c_white;
+show=1;
 
 draw_set_font(fnt);
 fnt_height = string_height("XXX");
@@ -59,13 +60,15 @@ depth=-100000;
           <argument>
             <kind>1</kind>
             <string>/// Draw text
-draw_set_font(fnt);
-draw_set_color(clr);
-draw_set_halign(fa_center);
-yy=y;
-for(var i=0; i&lt;array_length_1d(text); i++){
-  draw_text(room_width/2, y, text[i]);
-  yy += fnt_height + spacing;   
+if(show){
+    draw_set_font(fnt);
+    draw_set_color(clr);
+    draw_set_halign(fa_center);
+    yy=y;
+    for(var i=0; i&lt;array_length_1d(text); i++){
+      draw_text(room_width/2, yy, text[i]);
+      yy += fnt_height + spacing;   
+    }
 }
 </string>
           </argument>
