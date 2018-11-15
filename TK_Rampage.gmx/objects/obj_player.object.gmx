@@ -26,14 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
+depth=-300000;
 move = 0;
 hsp = 0;
 vsp = 0;
 movespeed = 4;
 image_speed=.25;
 headlight = instance_create(x,y,obj_headlight);
-hp=2;
+hp=3;
 flash=0;
+
 </string>
           </argument>
         </arguments>
@@ -68,7 +70,6 @@ move_v = key_down - key_up;
 hsp = move_h * movespeed;
 vsp = move_v * movespeed;
 
-depth = -y;
 
 
 //Horizontal Collision Check
@@ -180,8 +181,7 @@ headlight.depth = depth-10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Check hp
-/// Die
+            <string>/// Check hp and die
 if(hp&lt;1){
     if(instance_exists(obj_menu_retry)){
         obj_menu_retry.show = 1;
@@ -196,8 +196,11 @@ if(hp&lt;1){
     scr_screen_shake();
     scr_sound_service("splatloud");
     
-    audio_pause_sound(snd_ef_tkloop);
-    audio_pause_sound(snd_ef_tkloop_throw);
+    if(instance_exists(obj_sound_control)){
+        with(obj_sound_control){
+            event_user(0);// Stop sounds
+        }
+    }
     
     instance_destroy();
 }
@@ -250,6 +253,8 @@ if(other.state!=STATE_GB_STATIC){
 }
 
 hp--;
+scr_sound_service("impact2");
+scr_screen_shake();
 var inst = other.object_index;
 if(inst == obj_bullet || object_is_ancestor(inst,obj_bullet)){
     with(other){

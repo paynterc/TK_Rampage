@@ -81,6 +81,8 @@ explode_sprite = spr_bullet_explode;
 if(hp&lt;1){
     vspd = 0;
     movespeed = 0;
+    speed = 0;
+    depth= -20000;
 }
 
 </string>

@@ -16,6 +16,14 @@ var tg = argument1;
 var rspd = argument2;//1-10
 var accy = clamp(argument3,.05,10);// Don't want perfect accuracy or perfect inaccuracy
 
+if(!instance_exists(ob)){
+    return false;
+}
+
+if(!instance_exists(tg)){
+    return false;
+}
+
 var pd = point_direction(ob.x,ob.y,tg.x,tg.y);
 var dd = angle_difference(pd, ob.image_angle);
 ob.image_angle += sin(degtorad(dd)) * rspd;

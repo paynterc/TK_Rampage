@@ -35,6 +35,7 @@ bbt=noone;
 bbb=noone;
 vspd = background_vspeed[0];
 explode_sprite = spr_splatter1;
+explode_sound = noone;
 scored=0;
 image_speed=.5;
 flash=0;
@@ -128,6 +129,9 @@ if(state==STATE_GB_GRABBED){
 }else if(state == STATE_GB_THROWN){
     // Flying through air now
  
+}else if(state==STATE_GB_EXPLODING){
+    y += vspd;
+    depth = 10000;
 }else{
     y += vspd;
     depth = -y;
@@ -205,6 +209,9 @@ if(state!=STATE_GB_EXPLODING){
         movespeed = 0;
         vspd = background_vspeed[0];
         depth=1000;
+        if(explode_sound!=noone){
+            scr_sound_service(explode_sound);//should be a string
+        }
         if(!scored){
             scored=1;
             global.gamescore++;

@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
+depth = -1000000;
 move = 0;
 hsp = 0;
 vsp = 0;
@@ -38,6 +39,11 @@ max_grabbed = 16;// Max number of grabbed items
 image_speed=.25;
 
 at_capacity = false;
+
+audio_play_sound(snd_ef_tkloop,2,1);
+audio_pause_sound(snd_ef_tkloop);
+audio_play_sound(snd_ef_tkloop_throw,2,1);
+audio_pause_sound(snd_ef_tkloop_throw);
 </string>
           </argument>
         </arguments>
@@ -123,8 +129,10 @@ if(scr_user_input(INPUT_THROW) &amp;&amp; scr_user_input(INPUT_GRAB)){
 }
 
 if(state==STATE_GR_GRABBING){
-    
-
+    audio_pause_sound(snd_ef_tkloop_throw);
+    if(audio_is_paused(snd_ef_tkloop)){
+        audio_resume_sound(snd_ef_tkloop);
+    }
     sprite_index = spr_grabber;
     if( distance_to_point(mouse_x,mouse_y) &gt; movespeed ){
         move_towards_point(mouse_x,mouse_y,movespeed);
@@ -133,7 +141,8 @@ if(state==STATE_GR_GRABBING){
     }
 
 }else if(state==STATE_GR_MOVING){
-    
+    audio_pause_sound(snd_ef_tkloop);
+    audio_pause_sound(snd_ef_tkloop_throw);
     sprite_index = spr_headlight;
     x = mouse_x;
     y = mouse_y;
@@ -149,6 +158,11 @@ if(state==STATE_GR_GRABBING){
 
     
 }else if(state == STATE_GR_THROWING){
+    audio_pause_sound(snd_ef_tkloop);
+    if(audio_is_paused(snd_ef_tkloop_throw)){
+        audio_resume_sound(snd_ef_tkloop_throw);
+    }
+    
     sprite_index = spr_grabber;
     speed=0;
     if(can_throw){
@@ -214,7 +228,7 @@ at_capacity = ds_queue_size(queue) &gt;= max_grabbed;
           <argument>
             <kind>1</kind>
             <string>/// Grab it
-if(state==STATE_GR_GRABBING &amp;&amp; other.state == STATE_GB_STATIC){
+if(state==STATE_GR_GRABBING &amp;&amp; other.state == STATE_GB_STATIC &amp;&amp; !other.ungrabbable){
     if( ds_queue_size(queue) &lt; max_grabbed ){
         other.state = STATE_GB_GRABBED;
         ds_queue_enqueue(queue, other.id);

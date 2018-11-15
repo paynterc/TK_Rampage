@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_smashable</parentName>
+  <parentName>obj_en</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -40,11 +40,13 @@
           <argument>
             <kind>1</kind>
             <string>/// Init override
+ungrabbable=1;// Can't grab me
 hp =5;
+hpmax = hp;
 waypoints = noone;
 wpi = 0;// Waypoint index
 movespeed = 2;
-//vspd = 0;// Does not move with background
+
 
 gun_obj = obj_rifle;
 my_gun = noone;
@@ -216,16 +218,25 @@ my_gun.depth = depth-10;
           <argument>
             <kind>1</kind>
             <string>/// Check HP
-if(hp&lt;1){
-    state=STATE_GB_EXPLODING;
-    sprite_index = explode_sprite;
-    speed = 0;
-    movespeed = 0;
-    vspd = background_vspeed[0];
-    depth=1000;
-    if(!scored){
-        scored=1;
-        global.gamescore++;
+if(state!=STATE_GB_EXPLODING){
+    if(hp&lt;1){
+        state=STATE_GB_EXPLODING;
+        sprite_index = explode_sprite;
+        if(global.blood){
+            image_blend = c_red;
+        }else{
+            image_blend = c_white;
+        }   
+        
+        speed = 0;
+        movespeed = 0;
+        vspd = background_vspeed[0];
+        depth=1000;
+        if(!scored){
+            scored=1;
+            global.gamescore++;
+        }
+        scr_sound_service("splatloud");
     }
 }
 </string>
@@ -233,7 +244,7 @@ if(hp&lt;1){
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_player">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -250,8 +261,12 @@ if(hp&lt;1){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Hunter does not inherit enemy,so player will not automatically take damage on impact
-other.hp --;
+            <string>/// Healthbar
+draw_self();
+if(state!=STATE_GB_EXPLODING){
+    var pc = (hp/hpmax) * 100;
+    draw_healthbar(x-16,y-32,x+16,y-30,pc,c_black,c_yellow,c_lime,0,1,0);
+}
 </string>
           </argument>
         </arguments>

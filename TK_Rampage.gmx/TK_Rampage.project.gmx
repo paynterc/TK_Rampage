@@ -14,54 +14,9 @@
     <sound>sound\snd_ef_explosion1</sound>
     <sound>sound\snd_ef_splat1</sound>
     <sound>sound\snd_ef_splat2</sound>
+    <sound>sound\snd_ef_bosslaser1</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_bg_street2</sprite>
-    <sprite>sprites\spr_bg_street3</sprite>
-    <sprite>sprites\spr_bg_street4</sprite>
-    <sprite>sprites\spr_bullet</sprite>
-    <sprite>sprites\spr_bannana</sprite>
-    <sprite>sprites\spr_star</sprite>
-    <sprite>sprites\spr_bullet_explode</sprite>
-    <sprite>sprites\spr_button</sprite>
-    <sprite>sprites\spr_enemy1</sprite>
-    <sprite>sprites\spr_heart</sprite>
-    <sprite>sprites\spr_explode</sprite>
-    <sprite>sprites\spr_grabbable</sprite>
-    <sprite>sprites\spr_grabber</sprite>
-    <sprite>sprites\spr_headlight</sprite>
-    <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_soldier</sprite>
-    <sprite>sprites\spr_ninja</sprite>
-    <sprite>sprites\spr_agent</sprite>
-    <sprite>sprites\spr_olivia</sprite>
-    <sprite>sprites\spr_alien</sprite>
-    <sprite>sprites\spr_gus</sprite>
-    <sprite>sprites\spr_pirate</sprite>
-    <sprite>sprites\spr_cop</sprite>
-    <sprite>sprites\spr_solid</sprite>
-    <sprite>sprites\spr_splatter1</sprite>
-    <sprite>sprites\spr_splatter2</sprite>
-    <sprite>sprites\spr_trashcan3</sprite>
-    <sprite>sprites\spr_tree1</sprite>
-    <sprite>sprites\spr_tree3</sprite>
-    <sprite>sprites\spr_meter</sprite>
-    <sprite>sprites\spr_meter_exploded</sprite>
-    <sprite>sprites\spr_tree2</sprite>
-    <sprite>sprites\spr_bike</sprite>
-    <sprite>sprites\spr_trashcan_exploded</sprite>
-    <sprite>sprites\spr_trashcan2</sprite>
-    <sprite>sprites\spr_truck</sprite>
-    <sprite>sprites\spr_truck1</sprite>
-    <sprite>sprites\spr_truck3</sprite>
-    <sprite>sprites\spr_truck4</sprite>
-    <sprite>sprites\spr_truck5</sprite>
-    <sprite>sprites\spr_car1</sprite>
-    <sprite>sprites\spr_car2</sprite>
-    <sprite>sprites\spr_smoke1</sprite>
-    <sprite>sprites\spr_smoke2</sprite>
-    <sprite>sprites\spr_truck1_exploded</sprite>
-    <sprite>sprites\spr_truck2</sprite>
     <sprites name="_buildings">
       <sprite>sprites\spr_building3</sprite>
       <sprite>sprites\spr_building2</sprite>
@@ -70,11 +25,66 @@
       <sprite>sprites\spr_building4</sprite>
       <sprite>sprites\spr_building5</sprite>
     </sprites>
-    <sprite>sprites\spr_shadow</sprite>
+    <sprite>sprites\spr_agent</sprite>
+    <sprite>sprites\spr_alien</sprite>
+    <sprite>sprites\spr_bannana</sprite>
+    <sprite>sprites\spr_bg_street2</sprite>
+    <sprite>sprites\spr_bg_street3</sprite>
+    <sprite>sprites\spr_bg_street4</sprite>
+    <sprite>sprites\sprite66</sprite>
+    <sprite>sprites\spr_bike</sprite>
+    <sprite>sprites\spr_bolt</sprite>
+    <sprite>sprites\spr_boss_brain</sprite>
+    <sprite>sprites\spr_boss_explode1</sprite>
+    <sprite>sprites\spr_bullet</sprite>
+    <sprite>sprites\spr_bullet_explode</sprite>
+    <sprite>sprites\spr_button</sprite>
+    <sprite>sprites\spr_car1</sprite>
+    <sprite>sprites\spr_car2</sprite>
+    <sprite>sprites\spr_cop</sprite>
+    <sprite>sprites\spr_cyber_gorilla</sprite>
     <sprite>sprites\spr_donut</sprite>
-    <sprite>sprites\spr_tire</sprite>
+    <sprite>sprites\spr_enemy1</sprite>
+    <sprite>sprites\spr_explode</sprite>
+    <sprite>sprites\spr_grabbable</sprite>
+    <sprite>sprites\spr_grabber</sprite>
+    <sprite>sprites\spr_grabber_sm</sprite>
+    <sprite>sprites\spr_gus</sprite>
+    <sprite>sprites\spr_headlight</sprite>
+    <sprite>sprites\spr_heart</sprite>
     <sprite>sprites\spr_hospital</sprite>
+    <sprite>sprites\spr_meter</sprite>
+    <sprite>sprites\spr_meter_exploded</sprite>
+    <sprite>sprites\spr_missile_explode</sprite>
+    <sprite>sprites\spr_missile1</sprite>
+    <sprite>sprites\spr_ninja</sprite>
+    <sprite>sprites\spr_olivia</sprite>
+    <sprite>sprites\spr_pirate</sprite>
+    <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_rifle</sprite>
+    <sprite>sprites\spr_shadow</sprite>
+    <sprite>sprites\spr_smoke1</sprite>
+    <sprite>sprites\spr_smoke2</sprite>
+    <sprite>sprites\spr_soldier</sprite>
+    <sprite>sprites\spr_solid</sprite>
+    <sprite>sprites\spr_splatter1</sprite>
+    <sprite>sprites\spr_splatter2</sprite>
+    <sprite>sprites\spr_star</sprite>
+    <sprite>sprites\spr_tire</sprite>
+    <sprite>sprites\spr_tmp</sprite>
+    <sprite>sprites\spr_trashcan_exploded</sprite>
+    <sprite>sprites\spr_trashcan2</sprite>
+    <sprite>sprites\spr_trashcan3</sprite>
+    <sprite>sprites\spr_tree1</sprite>
+    <sprite>sprites\spr_tree2</sprite>
+    <sprite>sprites\spr_tree3</sprite>
+    <sprite>sprites\spr_truck</sprite>
+    <sprite>sprites\spr_truck1</sprite>
+    <sprite>sprites\spr_truck1_exploded</sprite>
+    <sprite>sprites\spr_truck2</sprite>
+    <sprite>sprites\spr_truck3</sprite>
+    <sprite>sprites\spr_truck4</sprite>
+    <sprite>sprites\spr_truck5</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_street1</background>
@@ -91,6 +101,7 @@
       <script>scripts\scr_option_save.gml</script>
       <script>scripts\scr_option_read.gml</script>
       <script>scripts\scr_sound_service.gml</script>
+      <script>scripts\scr_raycast.gml</script>
     </scripts>
     <scripts name="_menu">
       <script>scripts\scr_play.gml</script>
@@ -112,6 +123,15 @@
       <script>scripts\scr_get_array_1d.gml</script>
     </scripts>
     <script>scripts\scr_draw_lightning.gml</script>
+    <scripts name="_boss">
+      <scripts name="_brain">
+        <script>scripts\scr_boss1_init.gml</script>
+        <script>scripts\scr_boss1_move.gml</script>
+        <script>scripts\scr_missiles.gml</script>
+        <script>scripts\scr_boss1_laser.gml</script>
+        <script>scripts\scr_boss1_explode.gml</script>
+      </scripts>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader0.shader</shader>
@@ -123,9 +143,7 @@
     <object>objects\obj_game_settings</object>
     <object>objects\obj_game_control</object>
     <object>objects\obj_sound_control</object>
-    <object>objects\obj_player</object>
     <object>objects\obj_player_splat</object>
-    <object>objects\obj_grabber</object>
     <objects name="_spawning">
       <object>objects\obj_spawn_control</object>
       <object>objects\obj_wave_spawner</object>
@@ -183,6 +201,18 @@
       <object>objects\obj_smoke</object>
     </objects>
     <object>objects\obj_wizlabs</object>
+    <objects name="_bosses">
+      <object>objects\obj_boss</object>
+      <objects name="_brain">
+        <object>objects\obj_boss_brain</object>
+        <object>objects\obj_missile_seeker</object>
+      </objects>
+      <object>objects\obj_boss_explode</object>
+    </objects>
+    <objects name="_player">
+      <object>objects\obj_grabber</object>
+      <object>objects\obj_player</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
@@ -190,7 +220,7 @@
     <room>rooms\rm_menu_blood</room>
     <room>rooms\rm_1</room>
   </rooms>
-  <constants number="25">
+  <constants number="29">
     <constant name="INI_FILE">"tk_rampage.ini"</constant>
     <constant name="INPUT_GRAB">1</constant>
     <constant name="INPUT_THROW">2</constant>
@@ -216,6 +246,10 @@
     <constant name="STATE_GB_THROWN">3</constant>
     <constant name="STATE_GB_EXPLODING">4</constant>
     <constant name="STATE_GB_AIMING">5</constant>
+    <constant name="STATE_GB_BOSS_MOVE">6</constant>
+    <constant name="STATE_GB_BOSS_ATTACK1">7</constant>
+    <constant name="STATE_GB_BOSS_ATTACK2">8</constant>
+    <constant name="STATE_GB_BOSS_RECOVER">9</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

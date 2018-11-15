@@ -50,6 +50,15 @@ global.gamescore = 0;
 global.gamewave = 1;
 
 
+    
+if(instance_exists(obj_sound_control)){
+    with(obj_sound_control){
+        event_user(0);// Stop loops
+    }
+}
+
+cursor_sprite = spr_grabber_sm;
+window_set_cursor(cr_none);
 </string>
           </argument>
         </arguments>

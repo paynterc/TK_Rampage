@@ -93,6 +93,11 @@ smoke_created = 0;
         audio_play_sound(snd_ef_explosion1,2,0);
     }
 }
+
+if(state==STATE_GB_EXPLODING){
+    depth = 1000;
+
+}
 </string>
           </argument>
         </arguments>

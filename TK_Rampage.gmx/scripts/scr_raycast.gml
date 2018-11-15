@@ -27,5 +27,3 @@ while(len < maxd) {
 
 //If the raycast hit nothing, return false
 return noone;
-
-

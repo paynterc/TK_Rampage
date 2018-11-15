@@ -7,6 +7,11 @@ switch (argument[0])
             audio_play_sound(snd_ef_impact2,2,0); 
         }
         break;
+    case "impact2": 
+        if(!audio_is_playing(snd_ef_impact1)){
+            audio_play_sound(snd_ef_impact1,2,0); 
+        }
+        break;
     case "splat": 
         if(!audio_is_playing(snd_ef_splat1)){
             audio_play_sound(snd_ef_splat1,2,0); 
@@ -17,4 +22,15 @@ switch (argument[0])
             audio_play_sound(snd_ef_splat2,2,0); 
         }
         break;
+    case "explosion1":
+        if(!audio_is_playing(snd_ef_explosion1)){
+            audio_play_sound(snd_ef_explosion1,2,0); 
+        }
+        break;
+    case "bosslaser1":
+        if(!audio_is_playing(snd_ef_bosslaser1)){
+            audio_play_sound(snd_ef_bosslaser1,2,1); 
+        }
+        break;
+        
 }

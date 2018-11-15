@@ -114,14 +114,19 @@ if(e_count&lt;1){
 var xoffset;
 var ypoint;
 
+var bound_t = global.bound_t;
+var bound_b = global.bound_b;
+var bound_l = global.bound_l;
+var bound_r = global.bound_r;
+
 for(var i = 0; i &lt; 10; i++){
     xoffset = irandom_range(ob_xb,range_full-ob_xb);
-    ypoint = irandom_range( global.bound_t + ob_yb, global.bound_b - ob_yb );
+    ypoint = irandom_range( bound_t + ob_yb, bound_b - ob_yb );
 
-    waypoints_1[i,0]=global.bound_l + xoffset;
+    waypoints_1[i,0]=bound_l + xoffset;
     waypoints_1[i,1]=ypoint;
     
-    waypoints_2[i,0]=global.bound_r - xoffset;
+    waypoints_2[i,0]=bound_r - xoffset;
     waypoints_2[i,1]=ypoint;    
 }
 

@@ -186,8 +186,12 @@ if(instance_count&lt;300){
     with(wave){
         event_user(0);// Trigger wave
     }
-    global.gamewave ++;
-
+    if(!instance_exists(obj_boss)){
+        global.gamewave ++;
+        if(global.gamewave==2){
+            event_user(0);///Spawn first boss
+        }
+    }
 }
 alarm[1] = room_speed * spawn_rate_wave;
 </string>
@@ -229,6 +233,30 @@ if(thing.x-(thing.sprite_width/2) &lt;global.bound_l){
 }
 
 alarm[0] = room_speed * spawn_rate_object;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Spawn Boss 1
+instance_create(room_width/2,global.bound_t - 200,obj_boss_brain);
 </string>
           </argument>
         </arguments>
