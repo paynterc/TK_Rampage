@@ -15,6 +15,8 @@
     <sound>sound\snd_ef_splat1</sound>
     <sound>sound\snd_ef_splat2</sound>
     <sound>sound\snd_ef_bosslaser1</sound>
+    <sound>sound\snd_pickup1</sound>
+    <sound>sound\snd_throw1</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="_buildings">
@@ -42,12 +44,17 @@
     <sprite>sprites\spr_car1</sprite>
     <sprite>sprites\spr_car2</sprite>
     <sprite>sprites\spr_cop</sprite>
+    <sprite>sprites\spr_bot1</sprite>
+    <sprite>sprites\spr_bot2</sprite>
+    <sprite>sprites\spr_bot3</sprite>
+    <sprite>sprites\spr_bot4</sprite>
     <sprite>sprites\spr_cyber_gorilla</sprite>
     <sprite>sprites\spr_donut</sprite>
     <sprite>sprites\spr_enemy1</sprite>
     <sprite>sprites\spr_explode</sprite>
     <sprite>sprites\spr_grabbable</sprite>
     <sprite>sprites\spr_grabber</sprite>
+    <sprite>sprites\spr_grabber2</sprite>
     <sprite>sprites\spr_grabber_sm</sprite>
     <sprite>sprites\spr_gus</sprite>
     <sprite>sprites\spr_headlight</sprite>
@@ -143,6 +150,7 @@
     <object>objects\obj_game_settings</object>
     <object>objects\obj_game_control</object>
     <object>objects\obj_sound_control</object>
+    <object>objects\obj_explosion</object>
     <object>objects\obj_player_splat</object>
     <objects name="_spawning">
       <object>objects\obj_spawn_control</object>

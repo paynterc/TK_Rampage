@@ -199,14 +199,11 @@ if(state==STATE_GB_STATIC){
             <kind>1</kind>
             <string>/// Custom death condition
 
-if(state==STATE_GB_EXPLODING &amp;&amp; blended==0){
-    blended = 1;
-    if(global.blood){
-        image_blend = c_red;
-    }else{
-        image_blend = c_white;
-    }
+if(state==STATE_GB_EXPLODING){
+
     scr_sound_service("splat");
+    instance_create(x,y,obj_explosion);
+    instance_destroy(self);
 }
 
 </string>

@@ -158,9 +158,11 @@ y += vsp;
           <argument>
             <kind>1</kind>
             <string>/// Update effect pos
+
 headlight.x = x;
 headlight.y = y-14;
 headlight.depth = depth-10;
+
 </string>
           </argument>
         </arguments>

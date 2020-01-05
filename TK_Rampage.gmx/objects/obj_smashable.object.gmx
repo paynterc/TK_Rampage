@@ -34,7 +34,7 @@ bbl=noone;
 bbt=noone;
 bbb=noone;
 vspd = background_vspeed[0];
-explode_sprite = spr_splatter1;
+explode_sprite = spr_bullet_explode;
 explode_sound = noone;
 scored=0;
 image_speed=.5;
@@ -203,6 +203,7 @@ if(state==STATE_GB_INIT){
             <string>/// Check HP
 if(state!=STATE_GB_EXPLODING){
     if(hp&lt;1){
+
         state=STATE_GB_EXPLODING;
         sprite_index = explode_sprite;
         speed = 0;
@@ -212,10 +213,13 @@ if(state!=STATE_GB_EXPLODING){
         if(explode_sound!=noone){
             scr_sound_service(explode_sound);//should be a string
         }
+
+        
         if(!scored){
             scored=1;
             global.gamescore++;
         }
+
     }
 }
 
@@ -245,6 +249,7 @@ if(state!=STATE_GB_EXPLODING){
 if(state==STATE_GB_EXPLODING){
     image_speed = 0;
     image_index = image_number - 1;
+    //instance_destroy(self);
 }
 </string>
           </argument>

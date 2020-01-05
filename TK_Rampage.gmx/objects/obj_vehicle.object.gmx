@@ -49,6 +49,7 @@ sprite_index = choose(spr_truck3, spr_truck4, spr_truck5, spr_car1, spr_car2);
 explode_sprite = sprite_index;
 
 smoke_created = 0;
+smk=noone;// will contain the smoke object
 </string>
           </argument>
         </arguments>
@@ -88,7 +89,7 @@ smoke_created = 0;
             <string>if(hp&lt;1){
     if(!smoke_created){
         smoke_created = 1;
-        var smk = instance_create(x,y,obj_smoke);
+        smk = instance_create(x,y,obj_smoke);
         smk.image_angle = image_angle;
         audio_play_sound(snd_ef_explosion1,2,0);
     }
@@ -96,7 +97,18 @@ smoke_created = 0;
 
 if(state==STATE_GB_EXPLODING){
     depth = 1000;
-
+    image_alpha -= .05;
+    if(smk!=noone){
+        with(smk){
+            image_alpha -= .05;
+        }
+    }
+    if(image_alpha&lt;0){
+        if(smk!=noone){
+            instance_destroy(smk);
+        }
+        instance_destroy(self);
+    }
 }
 </string>
           </argument>
