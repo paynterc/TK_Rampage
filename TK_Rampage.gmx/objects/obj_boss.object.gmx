@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Init OVERRIDE
+            <string>/// Init
+
 
 movespeed=0;
 state = 0;
@@ -36,6 +37,7 @@ bbl=noone;
 bbt=noone;
 bbb=noone;
 vspd = 0;
+dir=1;// 1 or -1
 explode_sprite = spr_splatter1;
 scored=0;
 image_speed=.5;
@@ -43,6 +45,9 @@ flash=0;
 depth=-10000;
 
 ungrabbable = 1;// Make some things ungrabbable
+is_bullet=false;
+weight=1000;
+intangible=false;
 </string>
           </argument>
         </arguments>
@@ -95,6 +100,7 @@ bbb = y + (sprite_height/2);
             <string>/// Check HP
 if(state!=STATE_GB_EXPLODING){
     if(hp&lt;1){
+    show_debug_message("EXPLODE BOSS");
         state=STATE_GB_EXPLODING;
     }
 }

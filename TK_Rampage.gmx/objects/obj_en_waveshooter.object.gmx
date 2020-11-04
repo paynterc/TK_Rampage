@@ -65,6 +65,11 @@ wpi = 0;// Waypoint index
             <kind>1</kind>
             <string>/// Shooter variables
 mybullet = obj_bullet;
+ungrabbable = 0;// Initially ungrabbable
+image_speed=.25;
+explode_object=obj_explosion_generic;
+explode_sprite=spr_explosion_d;//Should not overwrite sprite
+weight=1;
 </string>
           </argument>
         </arguments>
@@ -165,7 +170,7 @@ if(state==STATE_GB_STATIC){
 if(state==STATE_GB_STATIC){
     if(is_array(waypoints)){
         
-        if( distance_to_point( waypoints[wpi,0], waypoints[wpi,1] ) &lt;= movespeed ){
+        if( distance_to_point( waypoints[wpi,0], waypoints[wpi,1] ) &lt;= 1 ){
             // Increment coordinate index
             wpi++;
         }
@@ -181,6 +186,8 @@ if(state==STATE_GB_STATIC){
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -197,14 +204,16 @@ if(state==STATE_GB_STATIC){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Custom death condition
-
-if(state==STATE_GB_EXPLODING){
-
-    scr_sound_service("splat");
-    instance_create(x,y,obj_explosion);
-    instance_destroy(self);
+            <string>/// Death: OVERWRITE
+scr_sound_service("splat");
+var expl = instance_create(x,y,explode_object);
+expl.sprite_index = explode_sprite;
+if(!scored){
+    scored=1;
+    global.gamescore++;
+    scr_addkillcount();
 }
+instance_destroy();
 
 </string>
           </argument>

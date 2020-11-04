@@ -42,6 +42,9 @@
             <string>/// Init OVERRIDE
 explode_sprite = spr_trashcan_exploded;
 image_speed = .25;
+/// Init OVERRIDE
+hp = 5;
+damage=2;
 </string>
           </argument>
         </arguments>

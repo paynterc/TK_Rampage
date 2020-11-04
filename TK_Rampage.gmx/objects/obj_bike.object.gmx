@@ -40,7 +40,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Init OVERRIDE
-
+hp = 8;
+damage=8;
 </string>
           </argument>
         </arguments>

@@ -29,17 +29,25 @@
 movespeed=0;
 state = STATE_GB_INIT;
 hp = 1;
+damage = 1;//damage i do to other smashables
 bbr=noone;
 bbl=noone;
 bbt=noone;
 bbb=noone;
 vspd = background_vspeed[0];
-explode_sprite = spr_bullet_explode;
-explode_sound = noone;
+explode_object = obj_explosion_generic;
+explode_sprite = spr_explosion_d;
+explode_sound = snd_ef_splat1;
 scored=0;
 image_speed=.5;
 flash=0;
 overshooting=0;// overshoot grabber when grabbed
+depth_mod=0;
+is_bullet=false;
+intangible=false;//Cant be hit. bullets pass through
+rotationSpeed = (360/room_speed)/ 2;
+thingsIhaveHit = array_create(1);// an array of objects this thing has hit. apply damage once to each.
+thingsIhaveHit[0]=noone;
 </string>
           </argument>
         </arguments>
@@ -87,10 +95,12 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>/// Set bounding box
+
 bbr = x + (sprite_width/2);
 bbl = x - (sprite_width/2);
 bbt = y - (sprite_height/2);
 bbb = y + (sprite_height/2);
+
 </string>
           </argument>
         </arguments>
@@ -114,6 +124,13 @@ bbb = y + (sprite_height/2);
             <string>/// Move
 if(state==STATE_GB_GRABBED){
 
+    if(instance_exists(obj_grabber)){
+        var mvSpd = distance_to_point(obj_grabber.x,obj_grabber.y) / obj_grabber.movespeed
+        move_towards_point(obj_grabber.x,obj_grabber.y,mvSpd);
+    }
+    image_angle += rotationSpeed;
+
+    /***
     if( instance_exists(obj_grabber) ){
         if(!overshooting){
             move_towards_point(obj_grabber.x,obj_grabber.y,obj_grabber.movespeed);
@@ -125,9 +142,12 @@ if(state==STATE_GB_GRABBED){
             overshooting=0;
         }
     }
+    ***/
+    depth = -10000000;
     
 }else if(state == STATE_GB_THROWN){
     // Flying through air now
+    image_angle += rotationSpeed;
  
 }else if(state==STATE_GB_EXPLODING){
     y += vspd;
@@ -135,6 +155,7 @@ if(state==STATE_GB_GRABBED){
 }else{
     y += vspd;
     depth = -y;
+    depth -= depth_mod;
 }
 </string>
           </argument>
@@ -203,25 +224,123 @@ if(state==STATE_GB_INIT){
             <string>/// Check HP
 if(state!=STATE_GB_EXPLODING){
     if(hp&lt;1){
-
         state=STATE_GB_EXPLODING;
-        sprite_index = explode_sprite;
-        speed = 0;
-        movespeed = 0;
-        vspd = background_vspeed[0];
-        depth=1000;
-        if(explode_sound!=noone){
-            scr_sound_service(explode_sound);//should be a string
-        }
-
-        
-        if(!scored){
-            scored=1;
-            global.gamescore++;
-        }
+        event_user(0);
 
     }
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_smashable">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Impact other smashable
+
+if(state==STATE_GB_GRABBED &amp;&amp; other.state==STATE_GB_GRABBED){
+
+    // Make grabbed items float around a little
+    if(x == other.x &amp;&amp; y == other.y){        
+        x+=sign(other.id - id);
+        y+=0;       
+    }
+    
+    var dir = point_direction(other.x, other.y, x, y);
+    var hspd = lengthdir_x(.5,dir);
+    var vspd = lengthdir_y(.5,dir);
+    x+=hspd;
+    y+=vspd;
+   
+}else if(state==STATE_GB_STATIC){
+    // Blocking
+    if(other.is_bullet || !is_bullet){
+        // Can only block bullets, but can't block with bullets.
+    }else if(other.state == STATE_GB_GRABBED ){
+        //state = STATE_GB_STATIC;
+        if(!scr_inarray(other.id,thingsIhaveHit)){
+            scr_push_array_1d(thingsIhaveHit,other.id);
+            hp--;
+            other.hp -= damage;  
+            other.flash=1;
+            flash=1;
+            scr_sound_service("impact");
+        }
+    }
+    
+}else if(state==STATE_GB_THROWN){
+
+    if(is_bullet &amp;&amp; other.is_bullet){
+        //ignore other bullets
+    }else if(other.state != STATE_GB_GRABBED 
+        &amp;&amp; other.state != STATE_GB_THROWN
+        &amp;&amp; other.state != STATE_GB_EXPLODING
+        &amp;&amp; !other.intangible){
+
+        if(!scr_inarray(other.id,thingsIhaveHit)){
+            scr_push_array_1d(thingsIhaveHit,other.id);
+            hp--;
+            other.hp -= damage;  
+            other.flash=1;
+            flash=1;
+            scr_sound_service("impact");
+        }
+
+
+    }
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Death
+
+var ex = instance_create(x,y,explode_object);
+if(explode_sprite!=noone){
+    ex.sprite_index = explode_sprite;
+}
+
+if(explode_sound!=noone){
+    scr_sound_service(explode_sound);//should be a string
+}
+
+
+instance_destroy();
 
 </string>
           </argument>
@@ -280,7 +399,10 @@ if (flash) {
     draw_self();
     d3d_set_fog(false, c_white, 0, 0);
 }else{
-    draw_self();
+    if(sprite_index){
+        draw_self();
+    }
+    
 }
 </string>
           </argument>

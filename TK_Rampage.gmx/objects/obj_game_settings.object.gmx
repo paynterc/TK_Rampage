@@ -26,10 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>/// Globals
+application_surface_enable(false);
 global.blood = scr_option_read("blood",1);
 global.music = scr_option_read("music",1);
 window_set_fullscreen(scr_option_read("fullscreen",0));
 global.tries =0;//Times played this session
+global.gameInProgress=false;
+global.startNewGame = true;
+
 </string>
           </argument>
         </arguments>

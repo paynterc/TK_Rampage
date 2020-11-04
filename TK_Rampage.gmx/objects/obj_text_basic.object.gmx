@@ -30,6 +30,7 @@ text=noone;
 text[0]="xxx";
 fnt = fnt_menus;
 clr = c_white;
+alpha = 1;
 show=1;
 
 draw_set_font(fnt);

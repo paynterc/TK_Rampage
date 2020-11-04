@@ -26,22 +26,48 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
-selected = noone;
-buttons = noone;
-show=1;
-depth=-100000;
-buttons[0,0]="PLAY";
-buttons[0,1]="scr_play";
-
-buttons[1,0]="OPTIONS";
-buttons[1,1]="scr_nav,rm_menu_options";
-
-buttons[2,0]="QUIT";
-buttons[2,1]="scr_quit";
-
-
-
+selected = 0;
+buttons = noone;// button config
+buttonsArray = noone;// hold the button instances
+show=true;
 fnt = fnt_menus;
+
+halign = fa_center;
+valign = fa_middle;
+btnsCreated = false;
+mousex_last=0;// Is mouse moving
+mousey_last=0;
+selected_last = 0;// Last button selected
+headerTxt = "TK RAMPAGE";
+headerClr = c_black;
+hderFnt = fnt_menus;
+
+depth=-100000;
+x = room_width/2;
+y = 64;
+
+var i = 0;
+if(global.gameInProgress == true){
+    buttons[i,0]="CONTINUE";
+    buttons[i,1]="scr_play";
+    i++;
+}
+
+buttons[i,0]="NEW GAME";
+buttons[i,1]="scr_newgame";
+i++;
+
+buttons[i,0]="OPTIONS";
+buttons[i,1]="scr_nav,rm_menu_options";
+i++;
+
+buttons[i,0]="QUIT";
+buttons[i,1]="scr_quit";
+
+
+draw_set_font(hderFnt);
+hderFnt_height = string_height("XXX");
+hderSpacing = hderFnt_height / 2;
 
 draw_set_font(fnt);
 fnt_height = string_height("XXX");
@@ -71,24 +97,107 @@ spacing = fnt_height / 2;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Instantiate buttons
+if(!btnsCreated){
+    btnsCreated=true;
+    var yy = y + hderFnt_height + spacing;
+    var btn;
+    for(var i = 0; i &lt; array_height_2d(buttons); i++){
+        
+        btn = instance_create(x,yy,obj_button_menu);
+        btn.fnt=fnt;
+        btn.text = buttons[i,0];
+        btn.image_xscale = string_width(btn.text)/btn.sprite_width;
+        btn.image_yscale = fnt_height/btn.sprite_height;
+        btn.image_alpha = 0;
+        btn.depth = -100000000;
+        btn.show=show;      
+        buttonsArray[i]=btn;
+        yy += fnt_height + spacing;
+        
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// User input
-if(scr_user_input(INPUT_MENU_OPTION_NEXT)){
-    selected++;
-}else if(scr_user_input(INPUT_MENU_OPTION_PREV)){
-    selected--;
+if(show){
+    window_set_cursor(cr_default);
+    if(mouse_x != mousex_last || mouse_y != mousey_last){
+    
+        // Mouse is moving
+        var btn;
+        for(var i = 0; i &lt; array_height_2d(buttons); i++){
+            btn = buttonsArray[i];
+            if(position_meeting(mouse_x,mouse_y,btn)){
+                selected = i;
+            }
+        }
+    
+    }else{
+    
+        if(scr_user_input(INPUT_MENU_OPTION_NEXT)){
+            selected++;
+        }else if(scr_user_input(INPUT_MENU_OPTION_PREV)){
+            selected--;
+        }
+        
+        // Cap selected
+        if(selected&gt;=array_height_2d(buttons)){
+            selected = array_height_2d(buttons);
+        }else if(selected&lt;0){
+            selected = 0;
+        }
+        
+    }
+    
+    
+    var btn;
+    for(var i = 0; i &lt; array_height_2d(buttons); i++){
+        btn = buttonsArray[i];
+        btn.show=show;
+        if(i == selected){
+            btn.hover = true;
+            if(selected!=selected_last){
+                audio_play_sound(snd_select1,1,0);
+                with(btn){
+                    event_user(1);
+                }
+            }
+
+        }else{
+            btn.hover = false;
+        }
+    }
+    
+    
+    if(scr_user_input(INPUT_MENU_OPTION_SELECT)){
+        if(selected &gt;=0 &amp;&amp; selected &lt; array_height_2d(buttons)){
+            audio_play_sound(snd_select2,1,0);
+            scr_script_parse(buttons[selected,1]);
+        }   
+    }
 }
 
-if(selected&gt;=array_height_2d(buttons)){
-    selected = selected&gt;=array_height_2d(buttons);
-}else if(selected&lt;0){
-    selected = 0;
-}
 
-if(scr_user_input(INPUT_MENU_OPTION_SELECT)){
-    if(selected &gt;=0 &amp;&amp; selected &lt; array_height_2d(buttons)){
-        scr_script_parse(buttons[selected,1]);
-    }   
-}
+mousex_last = mouse_x; mousey_last = mouse_y; selected_last=selected;
 </string>
           </argument>
         </arguments>
@@ -111,19 +220,16 @@ if(scr_user_input(INPUT_MENU_OPTION_SELECT)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw buttons
-if(show){
-    yy = y;
-    draw_set_halign(fa_center);
-    for(var i = 0; i &lt; array_height_2d(buttons); i++){
-        if(i==selected){
-            draw_set_color(c_white);
-        }else{
-            draw_set_color(c_black);
-        }
-        draw_text( room_width/2, yy, string(buttons[i,0]) );
-        yy += fnt_height + spacing;    
-    }
+            <string>/// Draw Title
+
+if(show &amp;&amp; headerTxt !=noone){
+    var Oclr = draw_get_colour();
+    draw_set_font(hderFnt);
+    draw_set_halign(halign);
+    draw_set_valign(valign);
+    draw_set_color(headerClr);
+    draw_text_transformed(x,y,headerTxt,1,1,0);
+    draw_set_color(Oclr);
 }
 </string>
           </argument>

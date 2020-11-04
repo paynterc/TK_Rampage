@@ -41,7 +41,7 @@
             <kind>1</kind>
             <string>/// Init OVERRIDE
 text[0]="TK RAMPAGE";
-
+clr = c_black;
 </string>
           </argument>
         </arguments>

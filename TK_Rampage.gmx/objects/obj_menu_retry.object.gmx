@@ -40,16 +40,16 @@
           <argument>
             <kind>1</kind>
             <string>/// Init OVERRIDE
+headerTxt=noone;
+
 buttons = noone;
-
-
 buttons[0,0]="RETRY?";
 buttons[0,1]="scr_play";
 
 buttons[1,0]="EXIT";
 buttons[1,1]="scr_nav,rm_menu";
 
-show=0;
+show=false;
 
 
 

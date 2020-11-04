@@ -40,6 +40,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
+headerTxt = "OPTIONS";
+
 buttons = noone;
 buttons[0,0]="BLOOD";
 buttons[0,1]="scr_op_blood_toggle";
@@ -60,7 +62,7 @@ buttons[3,1]="scr_nav,rm_menu";
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -77,41 +79,35 @@ buttons[3,1]="scr_nav,rm_menu";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw buttons
-yy = y;
-draw_set_halign(fa_center);
-var txt;
+            <string>/// Update button text
+var btn;// The button instance
 for(var i = 0; i &lt; array_height_2d(buttons); i++){
-    if(i==selected){
-        draw_set_color(c_white);
-    }else{
-        draw_set_color(c_black);
-    }
+    
+    btn = buttonsArray[i];
     
     if(buttons[i,0]=="BLOOD"){   
         if(global.blood){
-            txt = string(buttons[i,0]) + ": ON";            
+            btn.text = string(buttons[i,0]) + ": ON";            
         }else{
-            txt = string(buttons[i,0]) + ": OFF";
+            btn.text = string(buttons[i,0]) + ": OFF";
         }
     }else if(buttons[i,0]=="MUSIC"){   
         if(global.music){
-            txt = string(buttons[i,0]) + ": ON";            
+            btn.text = string(buttons[i,0]) + ": ON";            
         }else{
-            txt = string(buttons[i,0]) + ": OFF";
+            btn.text = string(buttons[i,0]) + ": OFF";
         }
     }else if(buttons[i,0]=="FULLSCREEN"){   
         if(window_get_fullscreen()){
-            txt = string(buttons[i,0]) + ": ON";            
+            btn.text = string(buttons[i,0]) + ": ON";           
         }else{
-            txt = string(buttons[i,0]) + ": OFF";
+            btn.text = string(buttons[i,0]) + ": OFF"
         }
     }else{
         txt = string(buttons[i,0]);
+        btn.text = string(buttons[i,0]);
     }
-    
-    draw_text( room_width/2, yy, txt );
-    yy += fnt_height + spacing;    
+  
 }
 </string>
           </argument>

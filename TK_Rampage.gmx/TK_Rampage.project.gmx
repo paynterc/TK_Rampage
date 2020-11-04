@@ -17,15 +17,67 @@
     <sound>sound\snd_ef_bosslaser1</sound>
     <sound>sound\snd_pickup1</sound>
     <sound>sound\snd_throw1</sound>
+    <sound>sound\snd_roar1</sound>
+    <sound>sound\snd_silencer1</sound>
+    <sound>sound\snd_powerup1</sound>
+    <sound>sound\snd_select1</sound>
+    <sound>sound\snd_select2</sound>
+    <sound>sound\snd_shot1</sound>
+    <sound>sound\snd_alarm1</sound>
+    <sound>sound\snd_death</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="_buildings">
-      <sprite>sprites\spr_building3</sprite>
-      <sprite>sprites\spr_building2</sprite>
-      <sprite>sprites\spr_building6</sprite>
       <sprite>sprites\spr_building1</sprite>
+      <sprite>sprites\spr_building2</sprite>
+      <sprite>sprites\spr_building_candy</sprite>
+      <sprite>sprites\spr_building3</sprite>
+      <sprite>sprites\spr_building_hardware</sprite>
+      <sprite>sprites\spr_bld_lab</sprite>
+      <sprite>sprites\sprite143</sprite>
       <sprite>sprites\spr_building4</sprite>
       <sprite>sprites\spr_building5</sprite>
+      <sprite>sprites\spr_hospital</sprite>
+      <sprite>sprites\spr_building6</sprite>
+      <sprite>sprites\spr_shadow_bdg</sprite>
+    </sprites>
+    <sprites name="_bullets">
+      <sprite>sprites\spr_bullet</sprite>
+      <sprite>sprites\spr_bolt</sprite>
+      <sprite>sprites\spr_bullet_explode</sprite>
+      <sprite>sprites\spr_spark</sprite>
+      <sprite>sprites\spr_blob</sprite>
+      <sprite>sprites\spr_pulse</sprite>
+      <sprite>sprites\spr_gumball</sprite>
+    </sprites>
+    <sprites name="_cin_cell">
+      <sprite>sprites\spr_cin_celldoor</sprite>
+      <sprite>sprites\spr_cin_doorexploded</sprite>
+      <sprite>sprites\cpr_cin_doorexpbk</sprite>
+    </sprites>
+    <sprites name="_cin_kitchen">
+      <sprite>sprites\spr_fridge</sprite>
+      <sprite>sprites\spr_table</sprite>
+      <sprite>sprites\spr_cat</sprite>
+      <sprite>sprites\spr_thoughtbubble</sprite>
+      <sprite>sprites\spr_cat_kneel</sprite>
+      <sprite>sprites\spr_cat2</sprite>
+      <sprite>sprites\spr_stars</sprite>
+      <sprite>sprites\spr_counter</sprite>
+      <sprite>sprites\spr_player_cin</sprite>
+      <sprite>sprites\spr_player_cin2</sprite>
+      <sprite>sprites\spr_petbowl</sprite>
+      <sprite>sprites\spr_petbowl_full</sprite>
+      <sprite>sprites\spr_petbowl_spill</sprite>
+      <sprite>sprites\spr_cin_agent</sprite>
+      <sprite>sprites\spr_catfood</sprite>
+      <sprite>sprites\spr_catfood2</sprite>
+      <sprite>sprites\spr_cin_exp</sprite>
+    </sprites>
+    <sprites name="_explosions">
+      <sprite>sprites\spr_explosion_b</sprite>
+      <sprite>sprites\spr_explosion_c</sprite>
+      <sprite>sprites\spr_explosion_d</sprite>
     </sprites>
     <sprite>sprites\spr_agent</sprite>
     <sprite>sprites\spr_alien</sprite>
@@ -33,42 +85,84 @@
     <sprite>sprites\spr_bg_street2</sprite>
     <sprite>sprites\spr_bg_street3</sprite>
     <sprite>sprites\spr_bg_street4</sprite>
-    <sprite>sprites\sprite66</sprite>
     <sprite>sprites\spr_bike</sprite>
-    <sprite>sprites\spr_bolt</sprite>
+    <sprite>sprites\spr_bos_cat_anm3</sprite>
     <sprite>sprites\spr_boss_brain</sprite>
+    <sprite>sprites\spr_boss_cat</sprite>
+    <sprite>sprites\spr_boss_cat_anm1</sprite>
+    <sprite>sprites\spr_boss_cat_anm2</sprite>
+    <sprite>sprites\spr_boss_cat_leap</sprite>
+    <sprite>sprites\spr_boss_cat_roar</sprite>
+    <sprite>sprites\spr_boss_cat_run</sprite>
     <sprite>sprites\spr_boss_explode1</sprite>
-    <sprite>sprites\spr_bullet</sprite>
-    <sprite>sprites\spr_bullet_explode</sprite>
-    <sprite>sprites\spr_button</sprite>
-    <sprite>sprites\spr_car1</sprite>
-    <sprite>sprites\spr_car2</sprite>
-    <sprite>sprites\spr_cop</sprite>
+    <sprite>sprites\spr_boss_hive_attack</sprite>
+    <sprite>sprites\spr_boss_hive_trx1</sprite>
+    <sprite>sprites\spr_boss_hive1</sprite>
+    <sprite>sprites\spr_boss_hive2</sprite>
+    <sprite>sprites\spr_boss_hive3</sprite>
+    <sprite>sprites\spr_boss_hivemind</sprite>
+    <sprite>sprites\spr_boss_hivemind_countdown</sprite>
+    <sprite>sprites\spr_boss_hivemind_forming</sprite>
+    <sprite>sprites\spr_boss_hivemind_forming2</sprite>
+    <sprite>sprites\spr_boss_hivemind_jump</sprite>
+    <sprite>sprites\spr_boss_spiderbrain</sprite>
     <sprite>sprites\spr_bot1</sprite>
     <sprite>sprites\spr_bot2</sprite>
     <sprite>sprites\spr_bot3</sprite>
     <sprite>sprites\spr_bot4</sprite>
+    <sprite>sprites\spr_btn1</sprite>
+    <sprite>sprites\spr_button</sprite>
+    <sprite>sprites\spr_car1</sprite>
+    <sprite>sprites\spr_car2</sprite>
+    <sprite>sprites\spr_cin_grabber</sprite>
+    <sprite>sprites\spr_commando1</sprite>
+    <sprite>sprites\spr_commando2</sprite>
+    <sprite>sprites\spr_commando3</sprite>
+    <sprite>sprites\spr_billy</sprite>
+    <sprite>sprites\spr_cop</sprite>
+    <sprite>sprites\spr_crosshairs</sprite>
     <sprite>sprites\spr_cyber_gorilla</sprite>
     <sprite>sprites\spr_donut</sprite>
+    <sprite>sprites\spr_gumballmachine</sprite>
     <sprite>sprites\spr_enemy1</sprite>
     <sprite>sprites\spr_explode</sprite>
     <sprite>sprites\spr_grabbable</sprite>
     <sprite>sprites\spr_grabber</sprite>
-    <sprite>sprites\spr_grabber2</sprite>
     <sprite>sprites\spr_grabber_sm</sprite>
+    <sprite>sprites\spr_grabber_throw</sprite>
+    <sprite>sprites\spr_grabber_throw2</sprite>
+    <sprite>sprites\spr_grabber1</sprite>
+    <sprite>sprites\spr_grabber2</sprite>
+    <sprite>sprites\spr_grabber3</sprite>
+    <sprite>sprites\spr_grabber4</sprite>
+    <sprite>sprites\spr_grabber5</sprite>
+    <sprite>sprites\spr_grabber6</sprite>
+    <sprite>sprites\spr_grabber7</sprite>
+    <sprite>sprites\spr_grabber8</sprite>
+    <sprite>sprites\spr_grabber9</sprite>
     <sprite>sprites\spr_gus</sprite>
+    <sprite>sprites\spr_hammer</sprite>
     <sprite>sprites\spr_headlight</sprite>
     <sprite>sprites\spr_heart</sprite>
-    <sprite>sprites\spr_hospital</sprite>
+    <sprite>sprites\spr_heart_beat</sprite>
+    <sprite>sprites\spr_heavy</sprite>
+    <sprite>sprites\spr_manhole</sprite>
+    <sprite>sprites\spr_manhole_cover</sprite>
     <sprite>sprites\spr_meter</sprite>
     <sprite>sprites\spr_meter_exploded</sprite>
     <sprite>sprites\spr_missile_explode</sprite>
     <sprite>sprites\spr_missile1</sprite>
+    <sprite>sprites\spr_muzzleflash1</sprite>
     <sprite>sprites\spr_ninja</sprite>
     <sprite>sprites\spr_olivia</sprite>
     <sprite>sprites\spr_pirate</sprite>
+    <sprite>sprites\spr_pistol_silencer</sprite>
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_player2</sprite>
+    <sprite>sprites\spr_pup_vortex</sprite>
     <sprite>sprites\spr_rifle</sprite>
+    <sprite>sprites\spr_rifle_commando</sprite>
+    <sprite>sprites\spr_shotgun</sprite>
     <sprite>sprites\spr_shadow</sprite>
     <sprite>sprites\spr_smoke1</sprite>
     <sprite>sprites\spr_smoke2</sprite>
@@ -92,33 +186,38 @@
     <sprite>sprites\spr_truck3</sprite>
     <sprite>sprites\spr_truck4</sprite>
     <sprite>sprites\spr_truck5</sprite>
+    <sprite>sprites\spr_vortex1</sprite>
+    <sprite>sprites\spr_wave</sprite>
+    <sprite>sprites\sprite109</sprite>
+    <sprite>sprites\sprite117</sprite>
+    <sprite>sprites\sprite121</sprite>
+    <sprite>sprites\sprite144</sprite>
+    <sprite>sprites\sprite79</sprite>
+    <sprite>sprites\sprite86</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_street1</background>
+    <background>background\bg_street2</background>
+    <background>background\bg_street3</background>
     <background>background\bg_buildings</background>
     <background>background\background2</background>
+    <background>background\bg_kitchen</background>
+    <background>background\background8</background>
+    <background>background\background11</background>
+    <background>background\bg_jailcell</background>
+    <background>background\background16</background>
+    <background>background\background15</background>
+    <background>background\background13</background>
+    <background>background\background12</background>
+    <background>background\background10</background>
+    <background>background\background9</background>
+    <background>background\background7</background>
+    <background>background\background6</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\pth_catFood</path>
+  </paths>
   <scripts name="scripts">
-    <scripts name="_service">
-      <script>scripts\scr_script_parse.gml</script>
-      <script>scripts\scr_user_input.gml</script>
-      <script>scripts\scr_screen_shake.gml</script>
-      <script>scripts\scr_gradually_rotate.gml</script>
-      <script>scripts\scr_option_save.gml</script>
-      <script>scripts\scr_option_read.gml</script>
-      <script>scripts\scr_sound_service.gml</script>
-      <script>scripts\scr_raycast.gml</script>
-    </scripts>
-    <scripts name="_menu">
-      <script>scripts\scr_play.gml</script>
-      <script>scripts\scr_quit.gml</script>
-      <script>scripts\scr_nav.gml</script>
-      <script>scripts\scr_op_blood.gml</script>
-      <script>scripts\scr_op_blood_toggle.gml</script>
-      <script>scripts\scr_op_music_toggle.gml</script>
-      <script>scripts\scr_op_fullscreen_toggle.gml</script>
-    </scripts>
     <scripts name="_arrays">
       <script>scripts\scr_str_split.gml</script>
       <script>scripts\scr_array_random.gml</script>
@@ -128,8 +227,8 @@
       <script>scripts\scr_fill_array.gml</script>
       <script>scripts\scr_array_remove.gml</script>
       <script>scripts\scr_get_array_1d.gml</script>
+      <script>scripts\scr_inarray.gml</script>
     </scripts>
-    <script>scripts\scr_draw_lightning.gml</script>
     <scripts name="_boss">
       <scripts name="_brain">
         <script>scripts\scr_boss1_init.gml</script>
@@ -138,97 +237,210 @@
         <script>scripts\scr_boss1_laser.gml</script>
         <script>scripts\scr_boss1_explode.gml</script>
       </scripts>
+      <scripts name="_hive">
+        <script>scripts\scr_boss2_eyebeams.gml</script>
+        <script>scripts\scr_boss2_spawner.gml</script>
+        <script>scripts\scr_boss2_trx1.gml</script>
+      </scripts>
+      <scripts name="_cat">
+        <script>scripts\scr_wave_attack.gml</script>
+        <script>scripts\scr_finalboss_explode.gml</script>
+      </scripts>
     </scripts>
+    <scripts name="_menu">
+      <script>scripts\scr_play.gml</script>
+      <script>scripts\scr_newgame.gml</script>
+      <script>scripts\scr_quit.gml</script>
+      <script>scripts\scr_nav.gml</script>
+      <script>scripts\scr_op_blood.gml</script>
+      <script>scripts\scr_op_blood_toggle.gml</script>
+      <script>scripts\scr_op_music_toggle.gml</script>
+      <script>scripts\scr_op_fullscreen_toggle.gml</script>
+    </scripts>
+    <scripts name="_service">
+      <script>scripts\scr_script_parse.gml</script>
+      <script>scripts\scr_user_input.gml</script>
+      <script>scripts\scr_screen_shake.gml</script>
+      <script>scripts\scr_gradually_rotate.gml</script>
+      <script>scripts\scr_option_save.gml</script>
+      <script>scripts\scr_option_read.gml</script>
+      <script>scripts\scr_sound_service.gml</script>
+      <script>scripts\scr_raycast.gml</script>
+      <script>scripts\scr_deltatime.gml</script>
+      <scripts name="_ease">
+        <script>scripts\scr_ease_in.gml</script>
+        <script>scripts\scr_ease_in_out_quad.gml</script>
+      </scripts>
+      <script>scripts\scr_bounce.gml</script>
+      <script>scripts\scr_instance_offscreen.gml</script>
+    </scripts>
+    <script>scripts\scr_1devnotes.gml</script>
+    <script>scripts\scr_addkillcount.gml</script>
+    <script>scripts\scr_draw_lightning.gml</script>
+    <script>scripts\scr_make_waypoints.gml</script>
+    <script>scripts\scr_poweralert.gml</script>
+    <scripts name="_spawn">
+      <script>scripts\scr_spawn_hunters.gml</script>
+      <script>scripts\scr_spawn_hunters_scatter.gml</script>
+    </scripts>
+    <script>scripts\scr_ihavehitthis.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader0.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_menus</font>
+    <font>fonts\fnt_score</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_game_settings</object>
-    <object>objects\obj_game_control</object>
-    <object>objects\obj_sound_control</object>
-    <object>objects\obj_explosion</object>
-    <object>objects\obj_player_splat</object>
-    <objects name="_spawning">
-      <object>objects\obj_spawn_control</object>
-      <object>objects\obj_wave_spawner</object>
-    </objects>
-    <object>objects\obj_efct_screenshake</object>
-    <objects name="_ui">
-      <object>objects\obj_menu</object>
-      <object>objects\obj_menu_options</object>
-      <object>objects\obj_menu_blood</object>
-      <object>objects\obj_menu_retry</object>
-      <object>objects\obj_text_basic</object>
-      <object>objects\obj_instructions</object>
-      <object>objects\obj_score</object>
-      <object>objects\obj_text_menu_header</object>
-      <object>objects\obj_button_basic</object>
-    </objects>
-    <objects name="_grabbables">
-      <object>objects\obj_solid</object>
-      <object>objects\obj_smashable</object>
-      <object>objects\obj_grabbable</object>
-      <object>objects\obj_grabbable_BACKUP</object>
-      <object>objects\obj_donut</object>
-      <object>objects\obj_tire</object>
-      <object>objects\obj_trashcan</object>
-      <object>objects\obj_meter</object>
-      <object>objects\obj_tree</object>
-      <object>objects\obj_bike</object>
-      <objects name="_enemies">
-        <object>objects\obj_en</object>
-        <objects name="_waveshooters">
-          <object>objects\obj_en_waveshooter</object>
-          <object>objects\obj_en_cop</object>
-          <object>objects\obj_en_pirate</object>
-          <object>objects\obj_en_ninja</object>
-          <object>objects\obj_en_disco</object>
-          <object>objects\obj_en_soldier</object>
-          <object>objects\obj_en_alien</object>
-        </objects>
-        <objects name="_hunters">
-          <object>objects\obj_rifle</object>
-          <object>objects\obj_hunter</object>
-          <object>objects\obj_agent</object>
-        </objects>
-        <objects name="_bullets">
-          <object>objects\obj_star</object>
-          <object>objects\obj_bullet</object>
-          <object>objects\obj_bannana</object>
-        </objects>
-        <object>objects\obj_vehicle</object>
-      </objects>
-    </objects>
-    <object>objects\obj_building</object>
-    <objects name="_effects">
-      <object>objects\obj_headlight</object>
-      <object>objects\obj_smoke</object>
-    </objects>
-    <object>objects\obj_wizlabs</object>
     <objects name="_bosses">
       <object>objects\obj_boss</object>
+      <object>objects\obj_boss_explode</object>
+      <object>objects\obj_final_boss_explode</object>
       <objects name="_brain">
         <object>objects\obj_boss_brain</object>
         <object>objects\obj_missile_seeker</object>
       </objects>
-      <object>objects\obj_boss_explode</object>
+      <objects name="_hivemind">
+        <object>objects\obj_boss_hivemind</object>
+        <object>objects\obj_hivemind_spawn</object>
+      </objects>
+      <objects name="_cat">
+        <object>objects\obj_boss_cat</object>
+        <object>objects\obj_crosshairs</object>
+      </objects>
+    </objects>
+    <objects name="_cinematic_final">
+      <object>objects\obj_cinematic_final</object>
+      <object>objects\obj_cin_hero_final</object>
+      <object>objects\obj_cin_hero_cat</object>
+      <object>objects\obj_cin_heart</object>
+    </objects>
+    <objects name="_cinematic_intro">
+      <object>objects\obj_cinematic_intro</object>
+      <object>objects\obj_cin_hero</object>
+      <object>objects\obj_cin_cat</object>
+      <object>objects\obj_cin_fridge</object>
+      <object>objects\obj_cin_table</object>
+      <object>objects\obj_thoughtbub</object>
+      <object>objects\obj_cin_counter</object>
+      <object>objects\obj_petbowl</object>
+      <object>objects\obj_cin_celldoor</object>
+      <object>objects\obj_cin</object>
+      <object>objects\obj_cin_catfood</object>
+      <object>objects\obj_cin_explode1</object>
+      <object>objects\obj_cin_agent</object>
+      <object>objects\obj_cin_grabber</object>
+      <object>objects\obj_blackout</object>
+      <object>objects\obj_blackin</object>
+      <object>objects\obj_button_skip</object>
+    </objects>
+    <objects name="_effects">
+      <object>objects\obj_headlight</object>
+      <object>objects\obj_smoke</object>
+      <object>objects\obj_muzzleflash</object>
+    </objects>
+    <objects name="_enemies">
+      <object>objects\obj_en</object>
+      <objects name="_waveshooters">
+        <object>objects\obj_en_waveshooter</object>
+        <object>objects\obj_en_cop</object>
+        <object>objects\obj_en_pirate</object>
+        <object>objects\obj_en_ninja</object>
+        <object>objects\obj_en_disco</object>
+        <object>objects\obj_en_soldier</object>
+        <object>objects\obj_en_alien</object>
+      </objects>
+      <objects name="_hunters">
+        <object>objects\obj_rifle</object>
+        <object>objects\obj_hunter</object>
+        <object>objects\obj_agent</object>
+        <object>objects\obj_commando</object>
+        <object>objects\obj_billy</object>
+        <object>objects\obj_heavy</object>
+      </objects>
+      <objects name="_bullets">
+        <object>objects\obj_star</object>
+        <object>objects\obj_blob</object>
+        <object>objects\obj_bullet</object>
+        <object>objects\obj_bannana</object>
+        <object>objects\obj_wave_bullet</object>
+        <object>objects\obj_gumball</object>
+      </objects>
+      <object>objects\obj_vehicle</object>
+    </objects>
+    <objects name="_grabbables">
+      <object>objects\obj_solid</object>
+      <object>objects\obj_grabbable</object>
+      <object>objects\obj_smashable</object>
+      <object>objects\obj_grabbable_BACKUP</object>
+      <object>objects\obj_donut</object>
+      <object>objects\obj_gumballmachine</object>
+      <object>objects\obj_hammer</object>
+      <object>objects\obj_tire</object>
+      <object>objects\obj_trashcan</object>
+      <object>objects\obj_manhole_cover</object>
+      <object>objects\obj_manhole</object>
+      <object>objects\obj_meter</object>
+      <object>objects\obj_tree</object>
+      <object>objects\obj_bike</object>
     </objects>
     <objects name="_player">
       <object>objects\obj_grabber</object>
       <object>objects\obj_player</object>
+      <object>objects\obj_player_dead</object>
+      <object>objects\obj_grabber_pointer</object>
     </objects>
+    <objects name="_powerup">
+      <object>objects\obj_powerup</object>
+      <object>objects\obj_pup_heart</object>
+      <object>objects\obj_pup_vortex</object>
+      <object>objects\obj_pup_animation</object>
+    </objects>
+    <objects name="_spawning">
+      <object>objects\obj_spawn_control</object>
+      <object>objects\obj_wave_spawner</object>
+      <object>objects\obj_ballspawner</object>
+    </objects>
+    <objects name="_test">
+      <object>objects\obj_gun_rotator_test</object>
+    </objects>
+    <objects name="_ui">
+      <objects name="_menu">
+        <object>objects\obj_menu</object>
+        <object>objects\obj_button_menu</object>
+        <object>objects\obj_menu_options</object>
+        <object>objects\obj_menu_retry</object>
+        <object>objects\obj_text_menu_header</object>
+      </objects>
+      <object>objects\obj_menu_old</object>
+      <object>objects\obj_text_basic</object>
+      <object>objects\obj_instructions</object>
+      <object>objects\obj_score</object>
+      <object>objects\obj_button_basic</object>
+      <object>objects\obj_text_poweralert</object>
+      <object>objects\obj_text_bossalert</object>
+    </objects>
+    <object>objects\obj_building</object>
+    <object>objects\obj_efct_screenshake</object>
+    <object>objects\obj_exploder</object>
+    <object>objects\obj_explosion</object>
+    <object>objects\obj_explosion_generic</object>
+    <object>objects\obj_game_control</object>
+    <object>objects\obj_game_settings</object>
+    <object>objects\obj_player_splat</object>
+    <object>objects\obj_sound_control</object>
+    <object>objects\obj_wizlabs</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
     <room>rooms\rm_menu_options</room>
-    <room>rooms\rm_menu_blood</room>
     <room>rooms\rm_1</room>
+    <room>rooms\rm_test</room>
+    <room>rooms\rm_cinematic_intro</room>
+    <room>rooms\rm_final</room>
   </rooms>
-  <constants number="29">
+  <constants number="37">
     <constant name="INI_FILE">"tk_rampage.ini"</constant>
     <constant name="INPUT_GRAB">1</constant>
     <constant name="INPUT_THROW">2</constant>
@@ -244,10 +456,13 @@
     <constant name="INPUT_MENU_OPTION_NEXT">12</constant>
     <constant name="INPUT_MENU_OPTION_PREV">13</constant>
     <constant name="INPUT_MENU_OPTION_SELECT">14</constant>
+    <constant name="INPUT_AIM">15</constant>
     <constant name="STATE_GR_MOVING">0</constant>
     <constant name="STATE_GR_GRABBING">1</constant>
     <constant name="STATE_GR_THROWING">2</constant>
     <constant name="STATE_GR_MIDTHROW">3</constant>
+    <constant name="STATE_GR_AIMING">4</constant>
+    <constant name="STATE_GR_STORM">5</constant>
     <constant name="STATE_GB_INIT">0</constant>
     <constant name="STATE_GB_STATIC">1</constant>
     <constant name="STATE_GB_GRABBED">2</constant>
@@ -258,6 +473,11 @@
     <constant name="STATE_GB_BOSS_ATTACK1">7</constant>
     <constant name="STATE_GB_BOSS_ATTACK2">8</constant>
     <constant name="STATE_GB_BOSS_RECOVER">9</constant>
+    <constant name="STATE_GB_BOSS_SPAWNING">10</constant>
+    <constant name="STATE_GB_BOSS_DORMANT">11</constant>
+    <constant name="STATE_GB_BOSS_REFORMING">12</constant>
+    <constant name="STATE_GB_BOSS_TRX_1">13</constant>
+    <constant name="STATE_GB_FIRING">14</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

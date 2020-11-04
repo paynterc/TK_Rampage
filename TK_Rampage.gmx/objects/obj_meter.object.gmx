@@ -47,7 +47,7 @@ if(x&lt;=global.bound_l + global.sidewalk_width){
 }else if(x &gt;= global.bound_r - global.sidewalk_width){
     x = global.bound_r - global.sidewalk_width + 16;
 }
-
+damage=10;
 </string>
           </argument>
         </arguments>

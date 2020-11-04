@@ -41,57 +41,8 @@
             <kind>1</kind>
             <string>/// Special vars
 ungrabbable = 0;// Make some things ungrabbable
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_smashable">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Impact other smashable
-if(state==STATE_GB_GRABBED &amp;&amp; other.state==STATE_GB_GRABBED){
-    if(x == other.x &amp;&amp; y == other.y){
-            
-        x+=sign(other.id - id);
-        y+=0;
-        
-    }
-    
-    var dir = point_direction(other.x, other.y, x, y);
-    var hspd = lengthdir_x(.5,dir);
-    var vspd = lengthdir_y(.5,dir);
-    x+=hspd;
-    y+=vspd;
-    
-}else if(state==STATE_GB_THROWN){
-    
-    if(other.state != STATE_GB_GRABBED 
-        &amp;&amp; other.state != STATE_GB_THROWN
-        &amp;&amp; other.state != STATE_GB_EXPLODING){
-        //state = STATE_GB_STATIC;
-        hp--;
-        other.hp--;  
-        other.flash=1;
-        flash=1;
-        scr_sound_service("impact");
-    }
-    
-}
+weight=0;
+dir=1;//direction of movement 1 or -1
 </string>
           </argument>
         </arguments>

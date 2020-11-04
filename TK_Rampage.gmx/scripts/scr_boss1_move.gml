@@ -1,7 +1,11 @@
 /// Move
-if(bbr>=global.bound_r){
+
+if(x >= room_width -128){
+
     dir = -1;
-}else if(bbl<=global.bound_l){
+    
+}else if(x <= 128){
+
     dir = 1;
 }
 

@@ -46,13 +46,20 @@ hpmax = hp;
 waypoints = noone;
 wpi = 0;// Waypoint index
 movespeed = 2;
+weight=2;
 
 
 gun_obj = obj_rifle;
+my_gun_sprite = spr_rifle;
+my_bullet = obj_bullet;
+my_bullet_speed=20;
+my_bullet_sprite=spr_bullet;
+my_gun_length = 64;
+my_gun_sound = snd_shot1;
 my_gun = noone;
 turn_speed=2;
 accuracy=.5;
-
+muzzleFlash = noone;
 
 
 ob_w = sprite_width;// Object width
@@ -70,6 +77,32 @@ for(var i = 0; i &lt; 10; i++){
     waypoints[i,0]=global.bound_l + xoffset;
     waypoints[i,1]=ypoint;
   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Cleanup
+if(instance_exists(my_gun)){
+    instance_destroy(my_gun);
 }
 </string>
           </argument>
@@ -96,10 +129,12 @@ for(var i = 0; i &lt; 10; i++){
             <string>/// Fire bullet, update waypoint
 
 // Fire bullet
-var bullet = instance_create(x + lengthdir_x(64, my_gun.image_angle),y + lengthdir_y(64, my_gun.image_angle), obj_bullet);
+var bullet = instance_create(x + lengthdir_x(my_gun_length, my_gun.image_angle),y + lengthdir_y(my_gun_length, my_gun.image_angle), my_bullet);
+bullet.sprite_index = my_bullet_sprite;
 bullet.direction = my_gun.image_angle;
 bullet.image_angle = my_gun.image_angle;
-bullet.speed = 20;
+bullet.speed = my_bullet_speed;
+audio_play_sound(my_gun_sound,2,0);
 
 // Update waypoint
 wpi++;
@@ -156,9 +191,18 @@ bbb = y + (sprite_height/2);
           <argument>
             <kind>1</kind>
             <string>/// Set states
+/// Check HP
+if(state!=STATE_GB_EXPLODING){
+    if(hp&lt;1){
+        state=STATE_GB_EXPLODING;
+        event_user(0);
+    }
+}
 
 if(my_gun==noone){
     my_gun = instance_create(x,y,gun_obj);
+    my_gun.sprite_index=my_gun_sprite;
+    my_gun_length = sprite_get_width(my_gun_sprite); 
 }
 
 
@@ -185,22 +229,25 @@ if(state==STATE_GB_INIT){
     // Slowly rotate gun toward player. Start timer to fire
     speed = 0;
     if(my_gun!=noone &amp;&amp; instance_exists(obj_player)){
-        scr_gradually_rotate(my_gun,obj_player,turn_speed, accuracy);
-    }
-
-    
+        scr_gradually_rotate(my_gun,obj_player.x,obj_player.y,turn_speed, accuracy);
+    } 
 }
 
 y += vspd;
 depth = -y;
-    
-my_gun.x = x;
-my_gun.y = y;
-my_gun.depth = depth-10;
+   
+if(instance_exists(my_gun)){
+    my_gun.x = x;
+    my_gun.y = y;
+    my_gun.depth = depth-10;
+} 
+
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -217,28 +264,19 @@ my_gun.depth = depth-10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Check HP
-if(state!=STATE_GB_EXPLODING){
-    if(hp&lt;1){
-        state=STATE_GB_EXPLODING;
-        sprite_index = explode_sprite;
-        if(global.blood){
-            image_blend = c_red;
-        }else{
-            image_blend = c_white;
-        }   
-        
-        speed = 0;
-        movespeed = 0;
-        vspd = background_vspeed[0];
-        depth=1000;
-        if(!scored){
-            scored=1;
-            global.gamescore++;
-        }
-        scr_sound_service("splatloud");
-    }
+            <string>/// Death: OVERWRITE
+if(instance_exists(my_gun)){
+    instance_destroy(my_gun);
 }
+if(instance_exists(muzzleFlash)){
+    instance_destroy(muzzleFlash);
+}
+if(!scored){
+    scored=1;
+    global.gamescore++;
+    scr_addkillcount();
+}
+event_inherited();
 </string>
           </argument>
         </arguments>

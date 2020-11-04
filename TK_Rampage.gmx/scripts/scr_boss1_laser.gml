@@ -22,8 +22,12 @@ if(hitobject!=noone && hitobject.state != STATE_GB_EXPLODING){
 }
 
 if(instance_exists(obj_player)){
-    var hitplayer = collision_line(x,y,x,room_height,obj_player,false,true);
-    if(hitplayer){
-        obj_player.hp--;
+    if(hitobject!=noone && hitobject.y<obj_player.y){
+        //no hit
+    }else{
+        var hitplayer = collision_line(x,y,x,room_height,obj_player,false,true);
+        if(hitplayer){
+            obj_player.hp--;
+        }
     }
 }

@@ -127,7 +127,7 @@ hp=0;
             <string>/// rotate to target
 if(instance_exists(obj_player)){
     if(state==STATE_GB_STATIC){
-        scr_gradually_rotate(id,obj_player,5,.75);
+        scr_gradually_rotate(id,obj_player.x,obj_player.y,5,.75);
         direction = image_angle;
     }
 }

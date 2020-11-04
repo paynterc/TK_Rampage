@@ -40,11 +40,11 @@
           <argument>
             <kind>1</kind>
             <string>/// Init OVERRIDE
-explode_sprite = spr_trashcan_exploded;
 image_speed = 0;
 hp = 100;
 
 sprite_index = choose(spr_tree1,spr_tree2, spr_tree3);
+damage=10;
 </string>
           </argument>
         </arguments>

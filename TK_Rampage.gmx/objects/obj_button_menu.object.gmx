@@ -5,10 +5,10 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_button_basic</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="7" enumb="10">
+    <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,8 +25,121 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Start game
-room_goto(rm_1);
+            <string>///Object variables
+
+enum menuBtnStates{
+    ready,
+    anim1,
+    anim2,
+    anim3
+}
+
+image_speed = 0;
+pressed = false;
+text = "---";
+xscale = 1;
+yscale = 1;
+angle = 0;
+fnt = fnt_menus;
+halign = fa_center;
+valign = fa_middle;
+clr = c_black;
+clrHvr = c_white;
+hover = false;
+show=true;
+
+
+
+xscale1 = 2;
+yscale1 = .05;
+xinc1 = .5
+yinc1 = .015;
+xscale2 = .85;
+yscale2 = 1.5;
+xinc2 = .15;
+yinc2 = .15;
+
+stateAnimation = menuBtnStates.ready;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Animation
+{
+switch (stateAnimation)
+    {
+        case menuBtnStates.anim1:
+            // Do stuff
+            if(xscale&lt;=1){
+                xscale = xscale2;
+                yscale = yscale2;
+
+                stateAnimation = menuBtnStates.anim2;
+            }
+            xscale -= xinc1;  
+            yscale += yinc1;
+     
+            break;
+        case menuBtnStates.anim2:
+            if(yscale&lt;=1){
+                yscale = 1;
+                xscale = 1;
+                stateAnimation = menuBtnStates.ready;
+            }
+            xscale += xinc2;
+            yscale -= yinc2;
+            break;
+  
+    }
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Start Animation
+if(stateAnimation==menuBtnStates.ready){
+    xscale=xscale1;
+    yscale=yscale1;
+    stateAnimation=menuBtnStates.anim1;
+}
+
 </string>
           </argument>
         </arguments>
@@ -49,8 +162,22 @@ room_goto(rm_1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw button
-draw_text(room_width/2,y,"PLAY");
+            <string>/// Daw Text
+if(show){
+    draw_self();
+    var clrNow = clr;
+    if(hover){
+        clrNow = clrHvr
+    }
+    var Oclr = draw_get_colour();
+    draw_set_font(fnt);
+    draw_set_halign(halign);
+    draw_set_valign(valign);
+    draw_set_color(clrNow);
+    draw_text_transformed(x,y,text,xscale,yscale,angle);
+    draw_set_color(Oclr);
+}
+
 </string>
           </argument>
         </arguments>

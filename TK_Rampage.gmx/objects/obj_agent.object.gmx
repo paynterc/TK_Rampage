@@ -39,8 +39,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp=20;
+            <string>hp=10;
 hpmax = hp;
+my_gun_sprite = spr_pistol_silencer;
+my_gun_sound = snd_silencer1;
 </string>
           </argument>
         </arguments>

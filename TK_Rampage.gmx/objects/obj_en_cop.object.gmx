@@ -40,7 +40,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Override Init
-movespeed=4;
+movespeed=2;
 hp = 1;
 info = noone;
 

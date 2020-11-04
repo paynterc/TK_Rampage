@@ -41,6 +41,7 @@
             <kind>1</kind>
             <string>/// Init OVERRIDE
 hp = 60;
+damage=20;
 </string>
           </argument>
         </arguments>

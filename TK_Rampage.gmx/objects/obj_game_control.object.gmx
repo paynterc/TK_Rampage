@@ -26,45 +26,169 @@
           <argument>
             <kind>1</kind>
             <string>/// Globals
+
+room_persistent = true;
+global.gameInProgress=true;
 global.tries++;
+
 
 global.pad = 0;
 
 // Use these to define the playable area in the room.
 // The view is slightly smaller than the room to accommodate screen shake
-global.bound_r=room_width - (room_width/8);
-global.bound_l=room_width/8;
+global.bound_r=room_width - 100;
+global.bound_l=100;
 global.bound_t=0;
 global.bound_b=room_height;
-global.sidewalk_width = 68;
+global.sidewalk_width = 85;// area where sidewalk objects can spawn
 
-global.bound_pr=global.bound_r-64;// Player right boundry
-global.bound_pl=global.bound_l+64;// Player left boundry
+global.bound_pr=room_width-100;// Player right boundry
+global.bound_pl=100;// Player left boundry
 
 // Use these to reset view after screen shake
-global.view_x = view_xview[0];
-global.view_y = view_yview[0];
+
+global.view_x = 4;
+global.view_y = 4;
+view_xview[0] = global.view_x;
+view_yview[0] = global.view_y;
+
+
 
 
 global.gamescore = 0;
-global.gamewave = 1;
+//global.gamewave = 1;
+
+//bosses at 10,30,50
+global.gamewave = 49;
+global.maxweight = 0;// increment by 1. revert to zero if hit.
+global.killcounter = 0;//keep track of hits. level up maxweight with every 20 kils
+global.playerIsDead = false;
 
 
-    
 if(instance_exists(obj_sound_control)){
     with(obj_sound_control){
         event_user(0);// Stop loops
     }
 }
 
-cursor_sprite = spr_grabber_sm;
+//cursor_sprite = spr_grabber_sm;
 window_set_cursor(cr_none);
+
+
+enum playStates{
+    playing,
+    playerWins
+}
+state = playStates.playing;
+
+obj_player.x = 1000;
+obj_player.y = 1000;
+lab = instance_create(0,room_height-214,obj_wizlabs);
+background_vspeed[0]=0;
+alarm[0]=room_speed *2;
+
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Start moving background
+
+instance_create(obj_player.x,obj_player.y,obj_grabber);
+background_vspeed[0]=1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Explosions
+var exp1 = instance_create(room_width/2,room_height-214,obj_explosion_generic);
+exp1.sprite_index = spr_explosion_b;
+exp1.image_xscale = 8;
+exp1.image_yscale = 8;
+audio_play_sound(snd_ef_explosion1,1,0);
+lab.image_index = 1;
+obj_player.x=room_width/2;
+obj_player.y = 288;
+alarm[1]=room_speed;
+
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Start new game
+
+if(global.startNewGame){
+    // We only came here to turn off persistence before going to cinematic intro and starting a new game.
+    show_debug_message("START NEW GAME 2");
+    global.startNewGame = false;
+    room_persistent = false;
+    global.gameInProgress = false;
+    global.tries = 0;
+    audio_pause_sound(snd_ef_tkloop);
+    room_goto(rm_cinematic_intro);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>

@@ -40,8 +40,36 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
+/****
+ini_open("tk_rampage.ini");
+topMargin = ini_read_real( 'SCORE_FMT', 'topMargin', 8 );
+bottomMargin = ini_read_real( 'SCORE_FMT', 'bottomMargin', 8 );
+leftMargin =  ini_read_real( 'SCORE_FMT', 'leftMargin', 8 );
+rightMargin =  ini_read_real( 'SCORE_FMT', 'rightMargin', 8 );
+heartX = ini_read_real( 'SCORE_FMT', 'heartX', 8 );
+heartY = ini_read_real( 'SCORE_FMT', 'heartY', 8 );
+heartScale = ini_read_real( 'SCORE_FMT', 'heartScale', 1 );
+heartSpace = ini_read_real( 'SCORE_FMT', 'heartSpace', 1 );
+ini_close();
+****/
 
+topMargin = 8;
+bottomMargin = 8;
+leftMargin = 8;
+rightMargin = 8;
+heartX = 24;
+heartY = 24;
+heartScale = 2;
+heartSpace = 24;
+
+topMargin += (room_height - view_hview[0])/2;//view is smaller than room for screen shake
+bottomMargin += (room_height - view_hview[0])/2;
+leftMargin += (room_width - view_wview[0])/2;
+rightMargin += (room_width - view_wview[0])/2;
+
+fnt=fnt_score;
 heart_width = sprite_get_width(spr_heart);
+heart_height = sprite_get_height(spr_heart);
 margin_l = room_width/8 + 8;
 
 </string>
@@ -70,25 +98,22 @@ margin_l = room_width/8 + 8;
 draw_set_font(fnt);
 draw_set_color(clr);
 draw_set_halign(fa_left);
-var yy=y;
-var xx = margin_l;
+draw_set_valign(fa_top);
+var yy=topMargin;
+var xx =leftMargin;
 
-draw_text(margin_l, yy, "SCORE: " + string(global.gamescore));
+draw_text(leftMargin, topMargin, "SCORE: " + string(global.gamescore));
+//draw_text(room_width-160, yy, "POWER: " + string(global.maxweight));
 
-
-
-yy += fnt_height + spacing;
+xx = room_width - heartX;
 if(instance_exists(obj_player)){
     for(var h=1; h&lt;=obj_player.hp; h++){
-        draw_sprite(spr_heart,0,xx,yy);
-        xx+=heart_width + heart_width/2;
+        draw_sprite_ext(spr_heart,0,xx,heartY,heartScale,heartScale,0,c_white,1);
+        xx-=heartSpace;
     }
 }
 
 yy += fnt_height + spacing;
-if(debug_mode){
-  draw_text(margin_l, yy, instance_count);
-} 
 </string>
           </argument>
         </arguments>
